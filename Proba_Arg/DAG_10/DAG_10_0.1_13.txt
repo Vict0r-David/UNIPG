@@ -1,0 +1,12 @@
+arg(a2).
+arg(a9).
+arg(a5).
+arg(a8).
+arg(a7).
+
+att(a2,a9):-0.56.
+att(a5,a8):-0.53.
+att(a7,a8):-0.96.
+
+# number of nodes = 5
+# number of edges = 3

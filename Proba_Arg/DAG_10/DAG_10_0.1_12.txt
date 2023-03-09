@@ -1,0 +1,7 @@
+arg(a0).
+arg(a8).
+
+att(a0,a8):-0.21.
+
+# number of nodes = 2
+# number of edges = 1

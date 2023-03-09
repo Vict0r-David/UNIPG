@@ -1,0 +1,19 @@
+arg(a1).
+arg(a5).
+arg(a2).
+arg(a4).
+arg(a6).
+arg(a3).
+arg(a7).
+arg(a9).
+
+att(a1,a5):-0.64.
+att(a5,a7):-0.86.
+att(a2,a4):-0.95.
+att(a2,a6):-0.31.
+att(a3,a4):-0.3.
+att(a3,a5):-0.21.
+att(a7,a9):-0.46.
+
+# number of nodes = 8
+# number of edges = 7

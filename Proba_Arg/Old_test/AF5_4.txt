@@ -1,0 +1,17 @@
+arg(a).
+arg(b1).
+arg(b2).
+arg(b3).
+arg(c1).
+arg(c2).
+
+
+att(b1,a):-0.1.
+att(b2,a):-0.2.
+att(b3,a):-0.7.
+att(b2,b1):-0.3.
+att(b2,b3):-0.5.
+att(c1,b1):-0.6.
+att(c1,b2):-0.4.
+att(c2,b3):-0.8.
+att(c2,b2):-0.9.

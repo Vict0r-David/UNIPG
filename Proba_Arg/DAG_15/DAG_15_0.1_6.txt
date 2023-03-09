@@ -1,0 +1,32 @@
+arg(a0).
+arg(a11).
+arg(a1).
+arg(a6).
+arg(a7).
+arg(a9).
+arg(a2).
+arg(a3).
+arg(a4).
+arg(a5).
+arg(a8).
+arg(a10).
+arg(a13).
+arg(a12).
+
+att(a0,a11):-0.31.
+att(a1,a6):-0.21.
+att(a1,a7):-0.38.
+att(a1,a9):-0.31.
+att(a1,a11):-0.28.
+att(a7,a10):-0.32.
+att(a7,a13):-0.74.
+att(a2,a11):-0.74.
+att(a3,a9):-0.98.
+att(a4,a11):-0.12.
+att(a5,a7):-0.56.
+att(a5,a8):-0.68.
+att(a5,a11):-0.46.
+att(a10,a12):-0.74.
+
+# number of nodes = 14
+# number of edges = 14
