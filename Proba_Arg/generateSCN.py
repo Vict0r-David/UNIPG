@@ -1,31 +1,28 @@
 import networkx as nx
 import random
 
+def generateSCN(k):
+    i = 1
+    liste_arg = ["arg(a1)."]
+    liste_att = []
+    while i < k:
+        r = random.randint(1,4)
+        for j in range(i+1,i+r+1):
+            w = round(random.uniform(0.1,1),2)
+            att = "att(a"+str(j)+",a"+str(i)+"):"+str(-w)+"."
+            liste_att.append(att)
+            liste_arg.append("arg(a"+str(j)+").")
+        i += r
+    return liste_arg,liste_att
+
+#print(generateSCN(20))
+
 
 for i in range(1,21):
-        
-    G=nx.gnp_random_graph(45,0.06,directed=True)
 
-    DAG = nx.DiGraph([(u,v,{'weight':random.uniform(0.1,1)}) for (u,v) in G.edges() if u<v])
-    #print(DAG)
-    #print(nx.is_directed_acyclic_graph(DAG))
+    liste_arg,liste_att=generateSCN(200)
 
-    liste_n = DAG.nodes
-    liste_arg = []
-    for n in liste_n:
-        liste_arg.append("arg(a"+str(n)+").")
-    #print(liste_arg)
-
-    liste_e = DAG.edges
-    #dico_att = {}
-    liste_att = []
-    for att in liste_e:
-        liste_att.append("att(a"+str(att[0])+",a"+str(att[1])+"):"+str(-round(DAG[att[0]][att[1]]["weight"],2))+".")
-        #dico_att["a"+str(att[0])+"->a"+str(att[1])] = ["a"+str(att[0]),"a"+str(att[1]),-round(DAG[att[0]][att[1]]["weight"],2)]
-    #print(liste_att)
-
-
-    file = ".\DAG_45\DAG_45_0.06_"+str(i)+".txt"
+    file = ".\SCN_200\SCN_200_"+str(i)+".txt"
 
     fichier = open(file, "w")
 

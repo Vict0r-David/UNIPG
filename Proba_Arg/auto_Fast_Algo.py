@@ -125,6 +125,28 @@ def Fast(goal, dico_Arg, dico_Att, dico_lvl,dico_pw):
             formula, dico_pw = develop(formula, arg[0], ldico_att_in, dico_Att, dico_pw)
     return formula
 
+###########################################################################################################
+
+
+def fastSCN(goal,dico_Arg,dico_Att,dico_lvl):
+    ldico_att_in = list_dico_Att_in(dico_Arg, dico_Att)
+    dico_att_in = dlist_Att_to_Arg(ldico_att_in)
+    dico_lvl = level_Arg(goal, 1, dico_att_in, dico_lvl)
+    liste_lvl = order_level(dico_lvl)
+    dico_deg = {}
+    i = len(liste_lvl)-1
+    while i >= 0: 
+        l_att = ldico_att_in[str(liste_lvl[i][0])]
+        if l_att == []:
+            dico_deg[str(liste_lvl[i][0])] = 1
+        else:
+            deg = 1
+            for att in l_att:
+                deg = deg * (1-(dico_deg[dico_Att[att][0]]*- dico_Att[att][2]))
+            dico_deg[str(liste_lvl[i][0])] = deg
+        i-=1
+    return dico_deg[goal]
+
 
 ###########################################################################################################
 ############################################# Experimentation #############################################
@@ -132,7 +154,8 @@ def Fast(goal, dico_Arg, dico_Att, dico_lvl,dico_pw):
 
 #### GESTION DU GRAPHE  - INITIALISATION ####
 
-output = ".\DAG_50\output_DAG_50.txt"
+#output = ".\DAG_50\output_DAG_50.txt"
+output = ".\SCN_200\output_F_SCN_200.txt"
 f_out = open(output,"w")
 avg_total_time = 0
 avg_total_nodes = 0
@@ -140,7 +163,8 @@ avg_total_edges = 0
 
 for i in range(1,21):
 
-    file_AF = ".\DAG_50\DAG_50_0.06_"+str(i)+".txt"
+    #file_AF = ".\DAG_50\DAG_50_0.06_"+str(i)+".txt"
+    file_AF = ".\SCN_200\SCN_200_"+str(i)+".txt"
     AF = open(file_AF,"r")
     dico_Arg = {}
     dico_Att = {}
@@ -181,7 +205,8 @@ for i in range(1,21):
     liste_output = []
     for a in dico_Arg:
         start = time.time()
-        proba = Fast(str(a), dico_Arg, dico_Att, dico_lvl, dico_pw)
+        #proba = Fast(str(a), dico_Arg, dico_Att, dico_lvl, dico_pw)
+        proba = fastSCN(str(a),dico_Arg,dico_Att,dico_lvl)
         end = time.time()
         elapsed = end - start
         liste_output.append([proba,round(elapsed,4)])

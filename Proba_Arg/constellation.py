@@ -86,7 +86,8 @@ def proba_arg(dico_Att,dico_Arg):
     return d_arg
 
 
-file_AF = "AF_0.txt"
+#file_AF = "AF_0.txt"
+file_AF = ".\Old_test\AF5_3.txt"
 AF = open(file_AF,"r")
 dico_Arg = {}
 dico_Att = {}

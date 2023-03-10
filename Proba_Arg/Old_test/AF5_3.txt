@@ -3,29 +3,29 @@ arg(b1).
 arg(b2).
 arg(c1).
 arg(c2).
+arg(c3).
 arg(d1).
 arg(d2).
+arg(d3).
 arg(e1).
 arg(e2).
-arg(f).
-arg(g).
 
 
 % 16 attacks
 
 att(b1,a):-0.1.
 att(b2,a):-0.2.
-att(d2,a):-0.3.
+att(c3,a):-0.3.
 att(c1,b1):-0.5.
 att(c2,b1):-0.6.
-att(b1,b2):-0.4.
-att(f,b2):-0.7.
+att(c3,b2):-0.4.
 att(e1,c1):-0.7.
-att(d1,c2):-0.8.
 att(d1,c2):-0.7.
-att(e1,d1):-0.9.
-att(e2,d2):-0.6.
-att(d2,f):-0.5.
-att(e2,f):-0.4.
-att(g,f):-0.2.
-att(e2,g):-0.3.
+att(d2,c2):-0.8.
+att(e1,d1):-0.7.
+att(d2,c3):-0.9.
+att(e2,c3):-0.6.
+att(d3,c3):-0.5.
+att(e2,d2):-0.4.
+att(e2,d3):-0.2.
+%att(e2,g):-0.3.
