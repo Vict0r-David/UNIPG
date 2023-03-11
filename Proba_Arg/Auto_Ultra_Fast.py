@@ -329,8 +329,8 @@ print(f"Time (ALL MCN algo) = {elapsed}\n")
 
 #### GESTION DU GRAPHE  - INITIALISATION ####
 
-#output = ".\DAG_100\output_DAG_100.txt"
-output = ".\SCN_200\output_UF_SCN_200_1.txt"
+output = ".\DAG_60\output_DAG_60.txt"
+#output = ".\SCN_200\output_UF_SCN_200_1.txt"
 f_out = open(output,"w")
 avg_total_time = 0
 avg_total_nodes = 0
@@ -339,8 +339,8 @@ total_max = 0
 
 for i in range(1,21):
     print(i)
-    #file_AF = ".\DAG_100\DAG_100_0.02_"+str(i)+".txt"
-    file_AF = ".\SCN_200\SCN_200_"+str(i)+".txt"
+    file_AF = ".\DAG_60\DAG_60_0.05_"+str(i)+".txt"
+    #file_AF = ".\SCN_200\SCN_200_"+str(i)+".txt"
     AF = open(file_AF,"r")
     dico_Arg = {}
     dico_Att = {}
