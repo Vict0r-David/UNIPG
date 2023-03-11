@@ -6,6 +6,7 @@ import numpy
 import sympy as sym
 from sympy import Lambda
 from sympy import Pow
+from sympy import arg
 import time
 
 
@@ -13,7 +14,7 @@ import time
 
 #file_AF = "AF_test2.txt"
 #file_AF = ".\DAG_45\DAG_45_0.06_1.txt"
-file_AF = ".\Old_test\AF5_3.txt"
+file_AF = ".\Old_test\AF5_33.txt"
 AF = open(file_AF,"r")
 dico_Arg = {}
 dico_Att = {}
@@ -231,13 +232,26 @@ def level_Arg(start, lvl, ldico_att_in,dico_lvl):
         level_Arg(att, lvl+1, ldico_att_in,dico_lvl)
     return dico_lvl
 
+def init_dico_lvl(dico_Arg,dico_lvl):
+    for arg in dico_Arg:
+        dico_lvl[arg] = 0
+    return dico_lvl
 
-def order_level(dico_lvl):
+
+def order_level(start,dico_lvl):
     liste = []
+    add = False
     for arg,val in dico_lvl.items():
-        liste.append([arg,val])
+            if val > 0 or arg == start:
+                liste.append([arg,val])
     size = len(liste)
     quickSort(liste, 0, size - 1)
+    #i = 0
+    #while i < len(liste) and add == False:
+    #    if liste[i][0] == start:
+    #        add = True
+    #    else:
+    #        del liste[i]
     return liste
 
 
@@ -310,7 +324,7 @@ def Fast(goal, dico_Arg, dico_Att, dico_lvl,dico_pw):
     ldico_att_in = list_dico_Att_in(dico_Arg, dico_Att)
     dico_att_in = dlist_Att_to_Arg(ldico_att_in)
     dico_lvl = level_Arg(goal, 1, dico_att_in, dico_lvl)
-    liste_lvl = order_level(dico_lvl)
+    liste_lvl = order_level(goal,dico_lvl)
     #print(liste_lvl)
     liste_lvl = liste_lvl[1:]
     #print(liste_lvl)
@@ -322,9 +336,9 @@ def Fast(goal, dico_Arg, dico_Att, dico_lvl,dico_pw):
 
     #print(f'List of Levels: {liste_lvl}')
     for arg in liste_lvl:
-        print(f"avant dev {formula}")
+        #print(f"avant dev {formula}")
         formula, dico_pw = develop(formula, arg[0], ldico_att_in, dico_Att, dico_pw)
-        print(f"apres dev {formula}\n")
+        #print(f"apres dev {formula}\n")
     return formula
 
 
@@ -335,18 +349,9 @@ def fastSCN(goal,dico_Arg,dico_Att,dico_lvl):
     ldico_att_in = list_dico_Att_in(dico_Arg, dico_Att)
     dico_att_in = dlist_Att_to_Arg(ldico_att_in)
     dico_lvl = level_Arg(goal, 1, dico_att_in, dico_lvl)
-    liste_lvl = order_level(dico_lvl)
+    liste_lvl = order_level(goal,dico_lvl)
     dico_deg = {}
     i = len(liste_lvl)-1
-    
-    """
-    dico_paths = build_dico_paths(goal, ldico_att_in, dico_Att)
-    print(dico_paths.items())
-    dico_att_out = list_dico_Att_out(dico_Arg, dico_Att)
-    d_att_out =  dlist_Att_out_to_Arg(dico_att_out)
-    dico_dep = dependant_arg(goal, dico_att_in,d_att_out, dico_paths)
-    print(dico_dep.items())
-    """
     
     while i >= 0: 
         l_att = ldico_att_in[str(liste_lvl[i][0])]
@@ -376,26 +381,20 @@ def build_dico_paths(goal, ldico_att_in, dico_att):
 
 def dependant_arg(goal,dico_att_in,dico_att_out,dico_paths):
     dico_dep = {}
-
     all_nodes = set()
     for k in range(0,len(dico_att_in[goal])):
         all_nodes.update(dico_paths[dico_att_in[goal][k]])
     all_nodes.add(goal)
-
     for att in dico_att_in[goal]:
         dico_dep[att] = set()
         branch = dico_paths[att]
-        #print(f"branch {branch}")
         i = 0
         all_other_branchs = set()
         while i < len(dico_att_in[goal]):
             if dico_att_in[goal][i] != att:
                 all_other_branchs.update(dico_paths[dico_att_in[goal][i]])
             i += 1
-        
         inter = branch.intersection(all_other_branchs)
-        #print(inter)
-
         for arg in inter:
             if len(dico_att_out[arg]) > 1:
                 cpt = 0
@@ -408,139 +407,91 @@ def dependant_arg(goal,dico_att_in,dico_att_out,dico_paths):
                         dico_dep[att].add(arg)
     return dico_dep 
 
-def fastMCN(goal,dico_Arg,dico_Att,dico_lvl):#,dico_deg_computed):
+def fastMCN(goal,dico_Arg,dico_Att,d_lvl,dico_deg_computed):
     ldico_att_in = list_dico_Att_in(dico_Arg, dico_Att)
     dico_att_in = dlist_Att_to_Arg(ldico_att_in)
-    dico_lvl = level_Arg(goal, 1, dico_att_in, dico_lvl)
-    liste_lvl = order_level(dico_lvl)
+    dico_lvl = level_Arg(goal, 1, dico_att_in, d_lvl)
+    liste_lvl = order_level(goal,dico_lvl)
     dico_deg = {}
     i = len(liste_lvl)-1
-
     dico_paths = build_dico_paths(goal, ldico_att_in, dico_Att)
-    #print(dico_paths.items())
     dico_att_out = list_dico_Att_out(dico_Arg, dico_Att)
     d_att_out =  dlist_Att_out_to_Arg(dico_att_out)
     dico_dep = dependant_arg(goal, dico_att_in,d_att_out, dico_paths)
-    #print(dico_dep.items())
-
     merge_dep = set()
     for id,setdep in dico_dep.items():
         merge_dep.update(setdep)
-    #print(f"merge ? {merge_dep}")
-
     symbo = False
-    #print(dico_paths.items())
     while i >= 0: 
         l_att = ldico_att_in[str(liste_lvl[i][0])]
-        if l_att == []:
-            dico_deg[str(liste_lvl[i][0])] = 1
-        else:
-            deg = 1
-            for att in l_att:
-                #if dico_Att[att][0] in dico_deg_computed:
-                #    deg = deg * (1-(dico_deg_computed[dico_Att[att][0]]*- dico_Att[att][2]))
-                #else:
-                    if dico_Att[att][0] in merge_dep :
-                        deg = deg * (1-(sym.Symbol(dico_Att[att][0])* -dico_Att[att][2]))
-                        symbo = True
-                    else: 
-                        deg = deg * (1-(dico_deg[dico_Att[att][0]]*- dico_Att[att][2]))
-            dico_deg[str(liste_lvl[i][0])] = deg
+        deg = 1
+        for att in l_att:
+                if dico_Att[att][0] in merge_dep :
+                    deg = deg * (1-(sym.Symbol(dico_Att[att][0])* -dico_Att[att][2]))
+                    symbo = True
+                elif isinstance(dico_deg[dico_Att[att][0]], sym.Basic) and type(dico_deg[dico_Att[att][0]]) != sym.core.numbers.Float:
+                    deg = deg * (1-(dico_deg[dico_Att[att][0]]*- dico_Att[att][2]))
+                else:
+                    deg = deg * (1-(dico_deg_computed[dico_Att[att][0]]*- dico_Att[att][2])) 
+        dico_deg[str(liste_lvl[i][0])] = deg
         i-=1
     if symbo:
-        if goal == "a":
-            print(f" avant {dico_deg[goal]}")
-            print(merge_dep)
         dico_deg[goal] = sym.expand(dico_deg[goal])
-        if goal == "a":
-            print(f" middle {dico_deg[goal]}")
         dico_deg[goal] = dico_deg[goal].replace(Pow, lambda a,b: Pow(a,1))
-        if goal == "a":
-            print(f" après {dico_deg[goal]}")
 
-    return dico_deg[goal], merge_dep
-
-
+    return dico_deg[goal], merge_dep, liste_lvl
 
 def AllfastMCN(goal,dico_Arg,dico_Att,dico_lvl):
     ldico_att_in = list_dico_Att_in(dico_Arg, dico_Att)
     dico_att_in = dlist_Att_to_Arg(ldico_att_in)
-    dico_lvl = level_Arg(goal, 1, dico_att_in, dico_lvl)
-    liste_lvl = order_level(dico_lvl)
-    dico_deg = {}
+    dico_lvl_init = level_Arg(goal, 1, dico_att_in, dico_lvl)
+    liste_lvl = order_level(goal,dico_lvl_init)
     dico_deg_computed = {}
+    for arg in dico_Arg:
+        dico_deg_computed[arg] = 1
     i = len(liste_lvl)-1
-    
 
-    #print(liste_lvl)
     while i >= 0: 
-        #print(liste_lvl[i])
-        dico_deg[liste_lvl[i][0]], set_dep = fastMCN(liste_lvl[i][0],dico_Arg,dico_Att,dico_lvl)#,dico_deg_computed)
-        dico_deg_computed[liste_lvl[i][0]] = dico_deg[liste_lvl[i][0]]
-        #print(f" arg {liste_lvl[i][0]} = {set_dep}")
+        deg, set_dep, liste_lvl_j = fastMCN(liste_lvl[i][0],dico_Arg,dico_Att,dico_lvl,dico_deg_computed)
+        dico_deg_computed[liste_lvl[i][0]] = deg
+
         if len(set_dep) > 0:
-            for arg in set_dep:
-                dico_deg_computed[liste_lvl[i][0]] = dico_deg_computed[liste_lvl[i][0]].subs(arg,dico_deg_computed[arg])
-            print(f" arg computed {liste_lvl[i][0]} = {dico_deg_computed[liste_lvl[i][0]]}")
+            j = 0
+            # keep only the dependant argument and thanks to list_lvl they are ordered increasingly
+            while j < len(liste_lvl_j):
+                if liste_lvl_j[j][0] not in set_dep:
+                    del liste_lvl_j[j]
+                    j -=1
+                j +=1
+            
+            for arg,lvl in liste_lvl_j:              
+                new_arg = 1
+                if len(ldico_att_in[arg]) > 0:
+                    for att in ldico_att_in[arg]:
+                        new_arg = new_arg * (1- sym.Symbol(dico_Att[att][0]) * float(-dico_Att[att][2]))
+                    deg = deg.subs(arg,new_arg) 
+                    sum_term = 0
+                    for term in deg.args :
+                        for var in term.free_symbols:
+                            if str(var) not in set_dep or dico_deg_computed[str(var)] == 1:
+                                term = term.subs(var,dico_deg_computed[str(var)])
+                        term = sym.expand(term)
+                        term = term.replace(Pow, lambda a,b: Pow(a,1))
+                        sum_term = sum_term + term
+                    deg = sum_term
+                else :
+                    deg = deg.replace(sym.Symbol(arg),1)
 
-        print(f" arg {liste_lvl[i][0]} = {dico_deg[liste_lvl[i][0]]}")
-        
-        
+            dico_deg_computed[liste_lvl[i][0]] = deg
         i -= 1
-
     return dico_deg_computed[liste_lvl[0][0]]
 
 
-
-"""
-ldico_att_in = list_dico_Att_in(dico_Arg, dico_Att)
-dico_att_in = dlist_Att_to_Arg(ldico_att_in)
-liste_lvl = order_level(dico_lvl)
-dico_att_out = list_dico_Att_out(dico_Arg, dico_Att)
-d_att_out =  dlist_Att_out_to_Arg(dico_att_out)
-
-def recFastMCN(goal,dico_Att,dico_lvl,ldico_att_in,dico_att_in,d_att_out,liste_lvl):
-    dico_lvl = level_Arg(goal, 1, dico_att_in, dico_lvl)
-    dico_deg = {}
-    i = len(liste_lvl)-1
-
-    dico_paths = build_dico_paths(goal, ldico_att_in, dico_Att)    
-    dico_dep = dependant_arg(goal, dico_att_in,d_att_out, dico_paths)
-
-    merge_dep = set()
-    for id,setdep in dico_dep.items():
-        merge_dep.update(setdep)
-    print(merge_dep)
-
-    symbo = False
-    while i >= 0: 
-        l_att = ldico_att_in[str(liste_lvl[i][0])]
-        if l_att == []:
-            dico_deg[str(liste_lvl[i][0])] = 1
-        else:
-            deg = 1
-            for att in l_att:
-                if dico_Att[att][0] in merge_dep :
-                    deg = deg * (1-(sym.Symbol(dico_Att[att][0])* -dico_Att[att][2]))
-                    symbo = True
-                else: 
-                    deg = deg * (1-(dico_deg[dico_Att[att][0]]*- dico_Att[att][2]))
-            dico_deg[str(liste_lvl[i][0])] = deg
-        i-=1
-    if symbo:
-        dico_deg[goal] = sym.expand(dico_deg[goal])
-        dico_deg[goal] = dico_deg[goal].replace(Pow, lambda a,b: Pow(a,1))
-
-    # for any dependent argument call the function and for each dependent argument inside call the function, and so on
-
-    return dico_deg[goal]
-
-"""
-
+#list_terms = proba3.args 
 
 ############################################################
 
-
+"""
 start = time.time()
 proba1 = AlgoFast("a",dico_Arg,dico_Att,dico_pw_att)
 end = time.time()
@@ -548,8 +499,8 @@ elapsed = end - start
 
 print(f"Probability of a (Fast algo) = {proba1}")
 print(f"Time (Fast algo) = {elapsed}\n")
-
-
+"""
+dico_lvl = init_dico_lvl(dico_Arg,dico_lvl)
 start = time.time()
 proba = Fast("a", dico_Arg, dico_Att, dico_lvl, dico_pw)
 end = time.time()
@@ -558,18 +509,7 @@ elapsed = end - start
 print(f'Probability of a = {proba}')
 print(f'Time: {elapsed:.5}s\n')
 
-
-ldico_att_in = list_dico_Att_in(dico_Arg, dico_Att)
-dico_att_in = dlist_Att_to_Arg(ldico_att_in)
-dico_lvl = level_Arg("a", 1, dico_att_in, dico_lvl)
-liste_lvl = order_level(dico_lvl)
-i = len(liste_lvl)-1
-while i >= 0:
-    proba = Fast(liste_lvl[i][0], dico_Arg, dico_Att, dico_lvl, dico_pw)
-    print(f'Probability of {liste_lvl[i][0]} = {proba}')
-    i -= 1
-
-
+dico_lvl = init_dico_lvl(dico_Arg,dico_lvl)
 start = time.time()
 proba2 = fastSCN("a",dico_Arg,dico_Att, dico_lvl)
 end = time.time()
@@ -578,16 +518,25 @@ elapsed = end - start
 print(f"Probability of a (SCN algo) = {proba2}")
 print(f"Time (SCN algo) = {elapsed}\n")
 
+"""
+dico_deg_computed = {}
+for arg in dico_Arg:
+    dico_deg_computed[arg] = 1
 
-
+dico_lvl = init_dico_lvl(dico_Arg,dico_lvl)
 start = time.time()
-proba3 = fastMCN("a",dico_Arg,dico_Att, dico_lvl)
+proba3,dep,lvl = fastMCN("a",dico_Arg,dico_Att, dico_lvl)#,dico_deg_computed)
 end = time.time()
 elapsed = end - start
 
 print(f"Probability of a (MCN algo) = {proba3}")
+#list_terms = proba3.args 
+#print(proba3.free_symbols)
 print(f"Time (MCN algo) = {elapsed}\n")
+"""
 
+
+dico_lvl = init_dico_lvl(dico_Arg,dico_lvl)
 start = time.time()
 p = AllfastMCN("a",dico_Arg,dico_Att,dico_lvl)
 end = time.time()
@@ -595,57 +544,3 @@ elapsed = end - start
 
 print(f"Probability of a (ALL MCN algo) = {p}")
 print(f"Time (ALL MCN algo) = {elapsed}\n")
-
-
-b1 = sym.Symbol("b1")
-b2 = sym.Symbol("b2")
-c2 = sym.Symbol("c2")
-c3 = sym.Symbol("c3")
-c1 = sym.Symbol("c1")
-d1 = sym.Symbol("d1")
-d2 = sym.Symbol("d2")
-d3 = sym.Symbol("d3")
-
-a = (1- 0.1*(1-c1*0.5)*(1-0.6*(1-d1*0.7)*(1-d2*0.8)))*(1-(1-0.4*(1-d2*0.9)*(1-0.6)*(1-d3*0.5))*0.2)*(1-0.3*(1-d2*0.9)*(1-0.6)*(1-d3*0.5))
-a2 = sym.expand(a)
-#print(a2)
-a3 = a2.replace(Pow, lambda a,b: Pow(a,1))
-#print(a3)
-a3 = a3.subs(d3,0.8)
-a3 = a3.subs(d1,0.3)
-a3 = a3.subs(c1,0.3)
-print("")
-print(a3)
-
-a3 = a3.subs(d2,0.6)
-print("")
-print(a3)
-
-"""
-Probability of e2 = 1
-Probability of e1 = 1
-Probability of d3 = 0.800000000000000
-Probability of d2 = 0.600000000000000
-Probability of d1 = 0.300000000000000
-Probability of c3 = 0.110400000000000
-Probability of c2 = 0.410800000000000
-Probability of c1 = 0.300000000000000
-Probability of b2 = 0.955840000000000
-Probability of b1 = 0.640492000000000
-Probability of a = 0.729440662963200
-
-arg e2 = 1
- arg e1 = 1
- arg d3 = 0.8
- arg d2 = 0.6
- arg d1 = 0.30000000000000004
- arg computed c3 = 0.110400000000000
- arg c3 = 0.0604*e2 + 0.05
- arg c2 = 0.41080000000000005
- arg c1 = 0.30000000000000004
- arg b2 = 0.95584
- arg computed b1 = 0.640492000000000
- arg b1 = 0.187292*e1 + 0.4532
- arg computed a = 0.729748109829120
- arg a = 0.005930688*c3*d2 - 0.17577336*c3 - 0.0257856*d2 + 0.764232
-"""
