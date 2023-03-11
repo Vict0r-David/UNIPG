@@ -9,7 +9,7 @@ from sympy import Pow
 from sympy import arg
 import time
 
-
+"""
 #### GESTION DU GRAPHE  - INITIALISATION ####
 
 #file_AF = "AF_test2.txt"
@@ -54,7 +54,7 @@ for line in AF:
 #dico_Arg = {"a":1, "b":1, "c":1, "d":1, "e":1}
 #dico_Att = {"a->c": ["a","c",-0.3], "b->c": ["b","c",-0.9], "c->e": ["c","e",-0.4], "d->e": ["d","e",-0.3]}
 
-
+"""
 
 ################################################################################################################
 ############################################### Usefull Function ###############################################
@@ -278,7 +278,7 @@ def AllfastMCN(goal,dico_Arg,dico_Att,dico_lvl):
         deg, set_dep, liste_lvl_j = fastMCN(liste_lvl[i][0],dico_Arg,dico_Att,dico_lvl,dico_deg_computed)
         dico_deg_computed[liste_lvl[i][0]] = deg
 
-        if len(set_dep) > 0:
+        if len(set_dep) > 0 :
             j = 0
             # keep only the dependant argument and thanks to list_lvl they are ordered increasingly
             while j < len(liste_lvl_j):
@@ -287,7 +287,7 @@ def AllfastMCN(goal,dico_Arg,dico_Att,dico_lvl):
                     j -=1
                 j +=1
             
-            for arg,lvl in liste_lvl_j:              
+            for arg,lvl in liste_lvl_j:  
                 if type(deg) != int :           
                     new_arg = 1
                     if len(ldico_att_in[arg]) > 0:
@@ -313,6 +313,7 @@ def AllfastMCN(goal,dico_Arg,dico_Att,dico_lvl):
 
 ############################################################
 
+"""
 start = time.time()
 p = AllfastMCN("a",dico_Arg,dico_Att,dico_lvl)
 end = time.time()
@@ -320,3 +321,111 @@ elapsed = end - start
 
 print(f"Probability of a (ALL MCN algo) = {p}")
 print(f"Time (ALL MCN algo) = {elapsed}\n")
+"""
+
+###########################################################################################################
+############################################# Experimentation #############################################
+
+
+#### GESTION DU GRAPHE  - INITIALISATION ####
+
+#output = ".\DAG_100\output_DAG_100.txt"
+output = ".\SCN_200\output_UF_SCN_200.txt"
+f_out = open(output,"w")
+avg_total_time = 0
+avg_total_nodes = 0
+avg_total_edges = 0
+
+for i in range(1,21):
+    print(i)
+    #file_AF = ".\DAG_100\DAG_100_0.02_"+str(i)+".txt"
+    file_AF = ".\SCN_200\SCN_200_"+str(i)+".txt"
+    AF = open(file_AF,"r")
+    dico_Arg = {}
+    dico_Att = {}
+    dico_lvl = {}
+    dico_pw = {}
+
+    for line in AF:
+        if line[0:3] == "arg":
+            l1 = line.partition("(")
+            l2 = l1[2].partition(")")
+            dico_Arg[l2[0]] = 1
+            dico_lvl[l2[0]] = 0
+            dico_pw[l2[0]] = 0
+        if line[0:3] == "att":
+            l1 = line.partition("(")
+            l2 = l1[2].partition(")")
+            l3 = l2[0].partition(",")
+            att_from = l3[0]
+            att_to = l3[2]
+            l4 = l2[2][1:].partition("\n")
+            #w = float(l4[0][:-1])
+            w = numpy.float64(l4[0][:-1])
+            att = [att_from, att_to, w]
+            id = att_from+"->"+att_to
+            dico_Att[id] = att
+
+    #print(dico_Arg)
+    #print(dico_Att)
+
+    #AF_1.txt
+    #dico_Arg = {"a":1, "b":1, "c":1, "d":1}
+    #dico_Att = {"a->b":["a","b",-0.6], "b->c": ["b","c",-0.3], "d->b":["d","b",-0.2], "a->d":["a","d",-0.5], "c->a":["c","a",-0.2]}
+
+    #AF_2.txt
+    #dico_Arg = {"a":1, "b":1, "c":1, "d":1, "e":1}
+    #dico_Att = {"a->c": ["a","c",-0.3], "b->c": ["b","c",-0.9], "c->e": ["c","e",-0.4], "d->e": ["d","e",-0.3]}
+
+    liste_output = []
+    for a in dico_Arg:
+        print(a)
+        start = time.time()
+        #proba = Fast(str(a), dico_Arg, dico_Att, dico_lvl, dico_pw)
+        proba = AllfastMCN(str(a),dico_Arg,dico_Att,dico_lvl)
+        end = time.time()
+        elapsed = end - start
+        liste_output.append([proba,round(elapsed,4)])
+        #print(proba,round(elapsed,4))
+
+    #print(f'Probability of a = {proba}')
+    #print(f'Time: {elapsed:.5}s\n')
+
+        f_out.write("Prob arg(")
+        f_out.write(str(a))
+        f_out.write(") = ")
+        f_out.write(str(proba))
+        f_out.write(" and Time = ")
+        f_out.write(str(round(elapsed,4)))
+        f_out.write("\n")
+
+    f_out.write("Average Time = ")
+    avg = 0
+    for pair in liste_output:
+        avg += pair[1]
+    avg = avg/len(liste_output)
+    f_out.write(str(avg))
+    nb_nodes = len(dico_Arg)
+    nb_edges = len(dico_Att)
+    f_out.write(" nb nodes = ")
+    f_out.write(str(nb_nodes))
+    f_out.write(" nb edges = ")
+    f_out.write(str(nb_edges))
+    f_out.write("\n \n")
+
+    avg_total_time += avg
+    avg_total_nodes += nb_nodes
+    avg_total_edges += nb_edges
+
+    AF.close()
+
+avg_total_time = avg_total_time/20
+avg_total_nodes = avg_total_nodes/20
+avg_total_edges = avg_total_edges/20
+f_out.write("Average Total Time = ")
+f_out.write(str(avg_total_time))
+f_out.write("\nAverage Total Nodes = ")
+f_out.write(str(avg_total_nodes))
+f_out.write("\nAverage Total Edges = ")
+f_out.write(str(avg_total_edges))
+f_out.close()

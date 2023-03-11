@@ -4,7 +4,7 @@ import random
 
 for i in range(1,21):
         
-    G=nx.gnp_random_graph(50,0.06,directed=True)
+    G=nx.gnp_random_graph(60,0.05,directed=True)
 
     DAG = nx.DiGraph([(u,v,{'weight':random.uniform(0.1,1)}) for (u,v) in G.edges() if u<v])
     #print(DAG)
@@ -25,7 +25,7 @@ for i in range(1,21):
     #print(liste_att)
 
 
-    file = ".\DAG_50\DAG_50_0.06_"+str(i)+".txt"
+    file = ".\DAG_60\DAG_60_0.05_"+str(i)+".txt"
 
     fichier = open(file, "w")
 

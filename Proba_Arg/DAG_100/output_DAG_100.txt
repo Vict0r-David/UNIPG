@@ -1,0 +1,8 @@
+Prob arg(a0) = 1 and Time = 0.001
+Prob arg(a48) = 0.0358915201304910 and Time = 0.0773
+Prob arg(a79) = 0.189911955923433 and Time = 0.1161
+Prob arg(a1) = 1 and Time = 0.006
+Prob arg(a35) = 0.06116835999999999 and Time = 0.008
+Prob arg(a56) = 0.020000000000000018 and Time = 0.0141
+Prob arg(a59) = 0.6118979999999999 and Time = 0.0113
+Prob arg(a83) = 0.26732102500000005 and Time = 0.0155
