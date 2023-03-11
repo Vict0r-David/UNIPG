@@ -172,10 +172,10 @@ def level_Arg(start, lvl, ldico_att_in,dico_lvl):
         level_Arg(att, lvl+1, ldico_att_in,dico_lvl)
     return dico_lvl
 
-#def init_dico_lvl(dico_Arg,dico_lvl):
-#    for arg in dico_Arg:
-#        dico_lvl[arg] = 0
-#    return dico_lvl
+def init_dico_lvl(dico_Arg,dico_lvl):
+    for arg in dico_Arg:
+        dico_lvl[arg] = 0
+    return dico_lvl
 
 
 def order_level(start,dico_lvl):
@@ -278,7 +278,7 @@ def AllfastMCN(goal,dico_Arg,dico_Att,dico_lvl):
         deg, set_dep, liste_lvl_j = fastMCN(liste_lvl[i][0],dico_Arg,dico_Att,dico_lvl,dico_deg_computed)
         dico_deg_computed[liste_lvl[i][0]] = deg
 
-        if len(set_dep) > 0 :
+        if len(set_dep) > 0:
             j = 0
             # keep only the dependant argument and thanks to list_lvl they are ordered increasingly
             while j < len(liste_lvl_j):
@@ -287,7 +287,7 @@ def AllfastMCN(goal,dico_Arg,dico_Att,dico_lvl):
                     j -=1
                 j +=1
             
-            for arg,lvl in liste_lvl_j:  
+            for arg,lvl in liste_lvl_j:              
                 if type(deg) != int :           
                     new_arg = 1
                     if len(ldico_att_in[arg]) > 0:
@@ -330,11 +330,12 @@ print(f"Time (ALL MCN algo) = {elapsed}\n")
 #### GESTION DU GRAPHE  - INITIALISATION ####
 
 #output = ".\DAG_100\output_DAG_100.txt"
-output = ".\SCN_200\output_UF_SCN_200.txt"
+output = ".\SCN_200\output_UF_SCN_200_1.txt"
 f_out = open(output,"w")
 avg_total_time = 0
 avg_total_nodes = 0
 avg_total_edges = 0
+total_max = 0
 
 for i in range(1,21):
     print(i)
@@ -377,6 +378,8 @@ for i in range(1,21):
     #dico_Arg = {"a":1, "b":1, "c":1, "d":1, "e":1}
     #dico_Att = {"a->c": ["a","c",-0.3], "b->c": ["b","c",-0.9], "c->e": ["c","e",-0.4], "d->e": ["d","e",-0.3]}
 
+    max_time = 0
+    min_time = 999999999999999999
     liste_output = []
     for a in dico_Arg:
         print(a)
@@ -386,6 +389,13 @@ for i in range(1,21):
         end = time.time()
         elapsed = end - start
         liste_output.append([proba,round(elapsed,4)])
+        dico_lvl = init_dico_lvl(dico_Arg,dico_lvl)
+
+        if elapsed > max_time:
+            max_time = elapsed
+        if elapsed < min_time:
+            min_time = elapsed
+        
         #print(proba,round(elapsed,4))
 
     #print(f'Probability of a = {proba}')
@@ -411,7 +421,14 @@ for i in range(1,21):
     f_out.write(str(nb_nodes))
     f_out.write(" nb edges = ")
     f_out.write(str(nb_edges))
+    f_out.write("\n Min Time = ")
+    f_out.write(str(min_time))
+    f_out.write(" Max Time = ")
+    f_out.write(str(max_time))
     f_out.write("\n \n")
+
+    if max_time > total_max:
+        total_max = max_time
 
     avg_total_time += avg
     avg_total_nodes += nb_nodes
@@ -428,4 +445,6 @@ f_out.write("\nAverage Total Nodes = ")
 f_out.write(str(avg_total_nodes))
 f_out.write("\nAverage Total Edges = ")
 f_out.write(str(avg_total_edges))
+f_out.write("\nMax Total Time for one argument = ")
+f_out.write(str(total_max))
 f_out.close()

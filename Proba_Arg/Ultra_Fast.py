@@ -14,7 +14,8 @@ import time
 
 #file_AF = "AF_test2.txt"
 #file_AF = ".\DAG_45\DAG_45_0.06_1.txt"
-file_AF = ".\Old_test\AF5_33.txt"
+file_AF = ".\SCN_200\SCN_200_1.txt"
+#file_AF = ".\Old_test\AF5_33.txt"
 AF = open(file_AF,"r")
 dico_Arg = {}
 dico_Att = {}
@@ -314,7 +315,7 @@ def AllfastMCN(goal,dico_Arg,dico_Att,dico_lvl):
 ############################################################
 
 start = time.time()
-p = AllfastMCN("a",dico_Arg,dico_Att,dico_lvl)
+p = AllfastMCN("a7",dico_Arg,dico_Att,dico_lvl)
 end = time.time()
 elapsed = end - start
 
