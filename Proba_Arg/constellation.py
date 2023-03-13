@@ -6,6 +6,7 @@ import numpy
 #from itertools import combinations
 from itertools import chain, combinations, permutations
 import time
+import grounded as g
 
 def powerset(iterable):
     list_combinations = list()
@@ -14,15 +15,17 @@ def powerset(iterable):
     return list_combinations
 
 
-def grounded(world,dico_Arg):
+def ground(world,dico_Arg):
     d_arg = {}
     for arg in dico_Arg:
         d_arg[arg] = []
     
     In = []
+
     if len(world) > 0:
         for att in world:
             d_arg[att[1][1]].append(att[1][0])
+        #print(d_arg)
         Out = [] 
         Stop = False
         while len(In)+len(Out) < len(d_arg) and not Stop:
@@ -51,6 +54,12 @@ def grounded(world,dico_Arg):
             In.append(arg)
     return In
 
+def world_to_attack(world):
+    dico = {}
+    for elem in world:
+        dico[elem[0]] = elem[1]
+    return dico
+
 def build_Constellation(dico_Att,dico_Arg):
     set_att = set()
     set_attinfo = set()
@@ -70,7 +79,11 @@ def build_Constellation(dico_Att,dico_Arg):
             proba = numpy.float64(proba) * numpy.float64(-l_att[1][2])
         for att in (set_att - seen_att):
             proba = numpy.float64(proba) * numpy.float64(1 + dico_Att[att][2])
-        In = grounded(world,dico_Arg)
+
+        In = ground(world,dico_Arg)
+        #d_att = world_to_attack(world)
+        #In = g.grounded(dico_Arg,d_att)
+
         constellation.append([proba,In,world])
     return constellation
 
@@ -87,7 +100,8 @@ def proba_arg(dico_Att,dico_Arg):
 
 
 #file_AF = "AF_0.txt"
-file_AF = ".\Old_test\AF5_3.txt"
+#file_AF = ".\Old_test\AF5_3.txt"
+file_AF = ".\DAG_20\DAG_20_0.1_3.txt"
 AF = open(file_AF,"r")
 dico_Arg = {}
 dico_Att = {}

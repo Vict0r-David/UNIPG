@@ -6,7 +6,7 @@ def generateSCN(k):
     liste_arg = ["arg(a1)."]
     liste_att = []
     while i < k:
-        r = random.randint(1,4)
+        r = random.randint(1,10)
         for j in range(i+1,i+r+1):
             w = round(random.uniform(0.1,1),2)
             att = "att(a"+str(j)+",a"+str(i)+"):"+str(-w)+"."
@@ -20,9 +20,9 @@ def generateSCN(k):
 
 for i in range(1,21):
 
-    liste_arg,liste_att=generateSCN(200)
+    liste_arg,liste_att=generateSCN(800)
 
-    file = ".\SCN_200\SCN_200_"+str(i)+".txt"
+    file = ".\SCN_800\SCN_800_"+str(i)+".txt"
 
     fichier = open(file, "w")
 

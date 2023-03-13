@@ -3,6 +3,7 @@
 
 import math
 import numpy  
+import time 
 
 def grad(dico_Arg,dico_Att):
     new_arg = {}
@@ -25,13 +26,14 @@ def semantics(dico_Arg, dico_Att, threshold):
     dico_Arg = grad(dico_Arg, dico_Att)
     
     while not test_end(dico_Arg, dico_Arg_pred, threshold):
-        print(dico_Arg)
+        #print(dico_Arg)
         dico_Arg_pred = dico_Arg
         dico_Arg = grad(dico_Arg, dico_Att)
     return dico_Arg
 
 
-file_AF = "AF5_4.txt"
+#file_AF = "AF5_4.txt"
+file_AF = ".\SCN_1000\SCN_1000_1.txt"
 AF = open(file_AF,"r")
 dico_Arg = {}
 dico_Att = {}
@@ -64,5 +66,13 @@ for line in AF:
 #dico_Arg = {"a":1, "b":1, "c":1, "d":1, "e":1}
 #dico_Att = {"a->c": ["a","c",-0.3], "b->c": ["b","c",-0.9], "c->e": ["c","e",-0.4], "d->e": ["d","e",-0.3]}
 
-threshold = 0.000001
-print(semantics(dico_Arg, dico_Att, threshold))
+threshold = 0.0001
+start = time.time()
+dico = semantics(dico_Arg, dico_Att, threshold)
+end = time.time()
+elapsed = end - start
+#print(dico["a1"])
+
+
+print(f"Probability of a1 = {dico['a1']}")
+print(f"Time  = {elapsed}\n")
