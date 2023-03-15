@@ -1,0 +1,482 @@
+Prob arg(a0) = 1.0 and Time = 0.7823
+Prob arg(a7) = 0.3799272286234081 and Time = 0.7828
+Prob arg(a13) = 0.5445149859737192 and Time = 0.7835
+Prob arg(a16) = 0.0896883894037802 and Time = 0.7845
+Prob arg(a19) = 0.0 and Time = 0.7836
+Prob arg(a1) = 1.0 and Time = 0.7859
+Prob arg(a4) = 0.28002986188876444 and Time = 0.7846
+Prob arg(a5) = 0.308300395256917 and Time = 0.7823
+Prob arg(a6) = 0.05723630417007359 and Time = 0.785
+Prob arg(a8) = 0.7083455558814902 and Time = 0.7815
+Prob arg(a2) = 1.0 and Time = 0.7878
+Prob arg(a15) = 0.15605095541401273 and Time = 0.7825
+Prob arg(a3) = 1.0 and Time = 0.7821
+Prob arg(a10) = 0.052068521903988085 and Time = 0.7833
+Prob arg(a12) = 0.1828825191764231 and Time = 0.7817
+Prob arg(a14) = 0.8907857632802378 and Time = 0.7849
+Prob arg(a18) = 0.747073361082206 and Time = 0.7843
+Prob arg(a9) = 1.0 and Time = 0.783
+Prob arg(a11) = 0.06216491347132677 and Time = 0.7845
+Prob arg(a17) = 0.916527866752082 and Time = 0.7829
+Average_Time = 0.7836500000000001Average Iterations = 13829.95
+nb_nodes = 20 nb edges = 34
+Min_Time = 0.7815310955047607 Max Time = 0.7878191471099854
+ 
+Prob arg(a0) = 1.0 and Time = 0.7834
+Prob arg(a10) = 0.5737803412641193 and Time = 0.7865
+Prob arg(a1) = 1.0 and Time = 0.7826
+Prob arg(a5) = 0.33867276887871856 and Time = 0.7848
+Prob arg(a6) = 0.004938652673817425 and Time = 0.7839
+Prob arg(a15) = 0.3258258258258258 and Time = 0.7857
+Prob arg(a2) = 1.0 and Time = 0.7827
+Prob arg(a4) = 0.628456122273742 and Time = 0.7839
+Prob arg(a13) = 0.08519336113155097 and Time = 0.7843
+Prob arg(a3) = 1.0 and Time = 0.7864
+Prob arg(a7) = 0.13264951321279556 and Time = 0.7857
+Prob arg(a8) = 0.6609298531810767 and Time = 0.7879
+Prob arg(a12) = 0.3930356279219732 and Time = 0.7847
+Prob arg(a11) = 0.5583535514096879 and Time = 0.783
+Prob arg(a16) = 0.5313962078305836 and Time = 0.7829
+Prob arg(a19) = 0.08128785463818936 and Time = 0.7846
+Prob arg(a9) = 0.9959214250041618 and Time = 0.7848
+Prob arg(a17) = 0.30961227786752826 and Time = 0.783
+Prob arg(a14) = 0.9586087243886319 and Time = 0.782
+Prob arg(a18) = 0.2658371960640807 and Time = 0.7816
+Average_Time = 0.7842199999999999Average Iterations = 11850.85
+nb_nodes = 20 nb edges = 49
+Min_Time = 0.7815995216369629 Max Time = 0.7878696918487549
+ 
+Prob arg(a0) = 1.0 and Time = 0.7845
+Prob arg(a3) = 0.05321888412017167 and Time = 0.7886
+Prob arg(a5) = 0.8107563777413098 and Time = 0.783
+Prob arg(a6) = 0.5870518621649843 and Time = 0.7872
+Prob arg(a9) = 0.410336504330541 and Time = 0.7859
+Prob arg(a11) = 0.5392142754353144 and Time = 0.7826
+Prob arg(a12) = 0.6785172339041838 and Time = 0.7821
+Prob arg(a14) = 0.3605171208944794 and Time = 0.7832
+Prob arg(a18) = 0.6627523986825147 and Time = 0.7833
+Prob arg(a1) = 1.0 and Time = 0.7843
+Prob arg(a2) = 0.7603535169089183 and Time = 0.7833
+Prob arg(a4) = 0.34243697478991597 and Time = 0.7813
+Prob arg(a7) = 0.5604111262847696 and Time = 0.7873
+Prob arg(a13) = 0.2060176732637114 and Time = 0.7835
+Prob arg(a10) = 0.6731423020883924 and Time = 0.7838
+Prob arg(a15) = 0.07138810198300283 and Time = 0.7826
+Prob arg(a17) = 0.21161438518412173 and Time = 0.7856
+Prob arg(a19) = 0.17005294033481186 and Time = 0.7842
+Prob arg(a8) = 0.9115768319816263 and Time = 0.7822
+Prob arg(a16) = 0.7253536452665941 and Time = 0.7835
+Average_Time = 0.7841Average Iterations = 13937.3
+nb_nodes = 20 nb edges = 45
+Min_Time = 0.7813076972961426 Max Time = 0.7886097431182861
+ 
+Prob arg(a0) = 1.0 and Time = 0.781
+Prob arg(a1) = 0.2524145884388064 and Time = 0.7846
+Prob arg(a9) = 0.03926164664518019 and Time = 0.7838
+Prob arg(a7) = 0.43045273348519364 and Time = 0.7817
+Prob arg(a15) = 0.023469757334299166 and Time = 0.785
+Prob arg(a18) = 0.3687746458302906 and Time = 0.7851
+Prob arg(a19) = 0.447385409941898 and Time = 0.7859
+Prob arg(a2) = 1.0 and Time = 0.7829
+Prob arg(a6) = 0.026633496743981855 and Time = 0.7865
+Prob arg(a8) = 0.15826494724501758 and Time = 0.7835
+Prob arg(a10) = 0.0633473400459843 and Time = 0.7818
+Prob arg(a3) = 1.0 and Time = 0.7826
+Prob arg(a16) = 0.3671442016103733 and Time = 0.7831
+Prob arg(a17) = 0.004935002407318248 and Time = 0.7822
+Prob arg(a4) = 1.0 and Time = 0.7825
+Prob arg(a5) = 1.0 and Time = 0.7835
+Prob arg(a11) = 0.8024609975829488 and Time = 0.7842
+Prob arg(a13) = 0.06458712811171828 and Time = 0.7818
+Prob arg(a12) = 0.9104412087510061 and Time = 0.7808
+Prob arg(a14) = 0.7134875668870003 and Time = 0.7803
+Average_Time = 0.7831400000000001Average Iterations = 12918.7
+nb_nodes = 20 nb edges = 41
+Min_Time = 0.780301570892334 Max Time = 0.7865204811096191
+ 
+Prob arg(a0) = 1.0 and Time = 0.787
+Prob arg(a2) = 0.1374798462110877 and Time = 0.7823
+Prob arg(a4) = 0.10655495899463095 and Time = 0.7813
+Prob arg(a7) = 0.01767286658839523 and Time = 0.7858
+Prob arg(a9) = 0.06043689320388349 and Time = 0.7838
+Prob arg(a19) = 0.04199391943248036 and Time = 0.7831
+Prob arg(a1) = 1.0 and Time = 0.7868
+Prob arg(a8) = 0.22882274204856906 and Time = 0.7851
+Prob arg(a10) = 0.22463060202710955 and Time = 0.7903
+Prob arg(a11) = 0.7394349043965412 and Time = 0.7854
+Prob arg(a5) = 0.9311221326720397 and Time = 0.7883
+Prob arg(a3) = 1.0 and Time = 0.7826
+Prob arg(a18) = 0.016259652206667086 and Time = 0.7832
+Prob arg(a13) = 0.37388539003554283 and Time = 0.7825
+Prob arg(a6) = 1.0 and Time = 0.7836
+Prob arg(a15) = 0.056257982120051085 and Time = 0.7821
+Prob arg(a12) = 1.0 and Time = 0.7834
+Prob arg(a17) = 0.7250237266687757 and Time = 0.7805
+Prob arg(a14) = 1.0 and Time = 0.7857
+Prob arg(a16) = 0.9579493439121147 and Time = 0.787
+Average_Time = 0.7844900000000001Average Iterations = 16107.65
+nb_nodes = 20 nb edges = 30
+Min_Time = 0.7804968357086182 Max Time = 0.7903058528900146
+ 
+Prob arg(a0) = 1.0 and Time = 0.7861
+Prob arg(a15) = 0.2327639945143997 and Time = 0.7839
+Prob arg(a1) = 1.0 and Time = 0.7822
+Prob arg(a2) = 0.672624938149431 and Time = 0.7815
+Prob arg(a6) = 0.2889406587717595 and Time = 0.7806
+Prob arg(a10) = 0.07411704047434906 and Time = 0.7843
+Prob arg(a16) = 0.0014312001635657329 and Time = 0.7859
+Prob arg(a17) = 0.08558306957115373 and Time = 0.7825
+Prob arg(a9) = 0.5106855564893745 and Time = 0.7823
+Prob arg(a13) = 0.7591576184226226 and Time = 0.7847
+Prob arg(a3) = 1.0 and Time = 0.782
+Prob arg(a4) = 1.0 and Time = 0.7828
+Prob arg(a14) = 0.0044455734789787885 and Time = 0.7833
+Prob arg(a5) = 1.0 and Time = 0.7811
+Prob arg(a18) = 0.3991752077142337 and Time = 0.7848
+Prob arg(a8) = 1.0 and Time = 0.7827
+Prob arg(a11) = 0.25676000480711453 and Time = 0.7853
+Prob arg(a12) = 0.5547776958978138 and Time = 0.7867
+Average_Time = 0.7834833333333333Average Iterations = 15782.944444444445
+nb_nodes = 18 nb edges = 35
+Min_Time = 0.7806463241577148 Max Time = 0.7867083549499512
+ 
+Prob arg(a0) = 1.0 and Time = 0.7832
+Prob arg(a2) = 0.014867137571476624 and Time = 0.7832
+Prob arg(a14) = 0.22806658480010916 and Time = 0.7875
+Prob arg(a15) = 0.06545581557806497 and Time = 0.7821
+Prob arg(a17) = 0.6508814379536813 and Time = 0.7822
+Prob arg(a1) = 1.0 and Time = 0.781
+Prob arg(a4) = 0.14800409416581373 and Time = 0.7849
+Prob arg(a5) = 0.793905031892275 and Time = 0.7817
+Prob arg(a6) = 0.5323397075365579 and Time = 0.7805
+Prob arg(a16) = 0.3466152527849186 and Time = 0.7837
+Prob arg(a19) = 0.006106219823913661 and Time = 0.7845
+Prob arg(a7) = 0.9914248963841646 and Time = 0.7836
+Prob arg(a12) = 0.9018065268065268 and Time = 0.7854
+Prob arg(a13) = 0.5728230883497206 and Time = 0.7837
+Prob arg(a18) = 0.18443256925889467 and Time = 0.7836
+Prob arg(a3) = 1.0 and Time = 0.7886
+Prob arg(a9) = 0.06497877945265623 and Time = 0.7822
+Prob arg(a10) = 0.608677484504492 and Time = 0.783
+Prob arg(a8) = 1.0 and Time = 0.785
+Prob arg(a11) = 1.0 and Time = 0.7806
+Average_Time = 0.7835099999999999Average Iterations = 14226.3
+nb_nodes = 20 nb edges = 39
+Min_Time = 0.7804510593414307 Max Time = 0.7885837554931641
+ 
+Prob arg(a0) = 1.0 and Time = 0.7856
+Prob arg(a8) = 0.7308313155770783 and Time = 0.7845
+Prob arg(a12) = 0.137481717856668 and Time = 0.7825
+Prob arg(a16) = 0.1117042573068197 and Time = 0.7853
+Prob arg(a1) = 1.0 and Time = 0.7856
+Prob arg(a2) = 0.8237285744515765 and Time = 0.7814
+Prob arg(a5) = 0.0 and Time = 0.7841
+Prob arg(a13) = 0.37389037621530224 and Time = 0.7856
+Prob arg(a14) = 0.6655368013281683 and Time = 0.7816
+Prob arg(a18) = 0.1632938406063728 and Time = 0.7808
+Prob arg(a3) = 1.0 and Time = 0.7806
+Prob arg(a7) = 0.6407780675170907 and Time = 0.7849
+Prob arg(a4) = 1.0 and Time = 0.7866
+Prob arg(a6) = 0.32413506205366427 and Time = 0.7811
+Prob arg(a15) = 0.5119195259749207 and Time = 0.7844
+Prob arg(a19) = 0.9743136144919332 and Time = 0.7841
+Prob arg(a9) = 0.7743819614235262 and Time = 0.7811
+Prob arg(a17) = 0.26546217350115037 and Time = 0.7817
+Prob arg(a11) = 0.4277296360485269 and Time = 0.7819
+Prob arg(a10) = 1.0 and Time = 0.7821
+Average_Time = 0.783275Average Iterations = 14446.4
+nb_nodes = 20 nb edges = 38
+Min_Time = 0.7806475162506104 Max Time = 0.7866201400756836
+ 
+Prob arg(a0) = 1.0 and Time = 0.7829
+Prob arg(a8) = 0.8781548497320805 and Time = 0.7838
+Prob arg(a10) = 0.057210088977130674 and Time = 0.7841
+Prob arg(a11) = 0.00045627376425855514 and Time = 0.7812
+Prob arg(a17) = 0.2630868456577171 and Time = 0.7834
+Prob arg(a19) = 0.011050571713606017 and Time = 0.7817
+Prob arg(a1) = 1.0 and Time = 0.781
+Prob arg(a4) = 0.052441796660656896 and Time = 0.7821
+Prob arg(a7) = 0.4466174568145499 and Time = 0.7803
+Prob arg(a2) = 1.0 and Time = 0.7839
+Prob arg(a14) = 0.0025451180009254974 and Time = 0.7808
+Prob arg(a16) = 0.16179307152225908 and Time = 0.7815
+Prob arg(a3) = 1.0 and Time = 0.7835
+Prob arg(a9) = 0.19430176565008025 and Time = 0.7841
+Prob arg(a12) = 0.6709703947368421 and Time = 0.7823
+Prob arg(a13) = 0.4380473688218719 and Time = 0.784
+Prob arg(a5) = 1.0 and Time = 0.7823
+Prob arg(a18) = 0.015394136303860138 and Time = 0.7851
+Prob arg(a6) = 1.0 and Time = 0.7858
+Prob arg(a15) = 0.8447445313116955 and Time = 0.7821
+Average_Time = 0.7827949999999999Average Iterations = 13007.7
+nb_nodes = 20 nb edges = 41
+Min_Time = 0.7803137302398682 Max Time = 0.785792350769043
+ 
+Prob arg(a0) = 1.0 and Time = 0.7832
+Prob arg(a8) = 0.00897700852492896 and Time = 0.7861
+Prob arg(a13) = 0.03308116425182716 and Time = 0.7887
+Prob arg(a1) = 1.0 and Time = 0.7842
+Prob arg(a5) = 0.5941122233930453 and Time = 0.7867
+Prob arg(a19) = 0.02817668277411012 and Time = 0.785
+Prob arg(a2) = 1.0 and Time = 0.782
+Prob arg(a10) = 0.27930479562278726 and Time = 0.7843
+Prob arg(a11) = 0.061941083640189375 and Time = 0.7851
+Prob arg(a16) = 0.6964736424605178 and Time = 0.7847
+Prob arg(a18) = 0.004427306483861753 and Time = 0.7825
+Prob arg(a3) = 1.0 and Time = 0.7864
+Prob arg(a7) = 0.5749712386552474 and Time = 0.7832
+Prob arg(a14) = 0.26823793490460157 and Time = 0.7838
+Prob arg(a4) = 1.0 and Time = 0.7894
+Prob arg(a9) = 0.8005389019872011 and Time = 0.7819
+Prob arg(a6) = 1.0 and Time = 0.7849
+Prob arg(a17) = 0.5460185481291974 and Time = 0.7828
+Prob arg(a12) = 1.0 and Time = 0.7862
+Prob arg(a15) = 0.7493094387926968 and Time = 0.7865
+Average_Time = 0.78488Average Iterations = 14959.5
+nb_nodes = 20 nb edges = 36
+Min_Time = 0.7819056510925293 Max Time = 0.7894034385681152
+ 
+Prob arg(a0) = 1.0 and Time = 0.7846
+Prob arg(a1) = 0.8135353794786182 and Time = 0.7805
+Prob arg(a4) = 0.25828092243186584 and Time = 0.7827
+Prob arg(a7) = 0.27143524387802764 and Time = 0.7828
+Prob arg(a10) = 0.7120367970976937 and Time = 0.7838
+Prob arg(a16) = 0.02952809601745772 and Time = 0.7816
+Prob arg(a6) = 0.3515786749482402 and Time = 0.7828
+Prob arg(a14) = 0.5392703408369205 and Time = 0.786
+Prob arg(a2) = 1.0 and Time = 0.7842
+Prob arg(a8) = 0.7578026638393744 and Time = 0.7822
+Prob arg(a9) = 0.09978322720498578 and Time = 0.787
+Prob arg(a12) = 0.10110381255502134 and Time = 0.7841
+Prob arg(a17) = 0.11690964152405099 and Time = 0.7821
+Prob arg(a3) = 1.0 and Time = 0.7825
+Prob arg(a18) = 0.09387307121182775 and Time = 0.7821
+Prob arg(a5) = 1.0 and Time = 0.7817
+Prob arg(a15) = 0.394553726749632 and Time = 0.7828
+Prob arg(a19) = 0.08041910464008709 and Time = 0.7836
+Prob arg(a11) = 0.9023943566438309 and Time = 0.7827
+Prob arg(a13) = 1.0 and Time = 0.7841
+Average_Time = 0.7831950000000001Average Iterations = 14987.6
+nb_nodes = 20 nb edges = 35
+Min_Time = 0.7804853916168213 Max Time = 0.7870159149169922
+ 
+Prob arg(a0) = 1.0 and Time = 0.786
+Prob arg(a2) = 0.23301230604601392 and Time = 0.7816
+Prob arg(a3) = 0.38831783325175395 and Time = 0.7857
+Prob arg(a16) = 0.03789741415854175 and Time = 0.7846
+Prob arg(a19) = 0.020112293639487137 and Time = 0.7802
+Prob arg(a1) = 1.0 and Time = 0.7851
+Prob arg(a4) = 0.14096212242288636 and Time = 0.781
+Prob arg(a5) = 0.38716943355301575 and Time = 0.7811
+Prob arg(a9) = 0.189044704423956 and Time = 0.784
+Prob arg(a15) = 0.14608581722895514 and Time = 0.7861
+Prob arg(a10) = 0.4153145695364238 and Time = 0.782
+Prob arg(a12) = 0.8410392628870258 and Time = 0.7846
+Prob arg(a17) = 0.8120391271632806 and Time = 0.7829
+Prob arg(a6) = 0.8934321696158138 and Time = 0.7827
+Prob arg(a8) = 0.4103542234332425 and Time = 0.7835
+Prob arg(a11) = 0.6364151554404145 and Time = 0.786
+Prob arg(a18) = 0.06526002039375638 and Time = 0.7854
+Prob arg(a7) = 1.0 and Time = 0.7844
+Prob arg(a14) = 0.7519416706292598 and Time = 0.7833
+Prob arg(a13) = 0.7886755130635457 and Time = 0.7834
+Average_Time = 0.7836799999999999Average Iterations = 12405.1
+nb_nodes = 20 nb edges = 47
+Min_Time = 0.7802493572235107 Max Time = 0.78607177734375
+ 
+Prob arg(a0) = 1.0 and Time = 0.7837
+Prob arg(a7) = 0.7152530292230934 and Time = 0.7854
+Prob arg(a12) = 0.13292277885413784 and Time = 0.7841
+Prob arg(a14) = 0.14637473569333606 and Time = 0.7834
+Prob arg(a19) = 0.05909311853343518 and Time = 0.7837
+Prob arg(a1) = 1.0 and Time = 0.7823
+Prob arg(a5) = 0.27761153427638735 and Time = 0.7835
+Prob arg(a17) = 0.025864397622906536 and Time = 0.782
+Prob arg(a18) = 0.2510217251021725 and Time = 0.7828
+Prob arg(a2) = 1.0 and Time = 0.7836
+Prob arg(a11) = 0.2197192295135488 and Time = 0.7818
+Prob arg(a13) = 0.5158580835909152 and Time = 0.7851
+Prob arg(a3) = 1.0 and Time = 0.7848
+Prob arg(a10) = 0.6304826069022411 and Time = 0.7874
+Prob arg(a4) = 1.0 and Time = 0.7908
+Prob arg(a6) = 0.8300020892819834 and Time = 0.7822
+Prob arg(a9) = 0.319742042854171 and Time = 0.782
+Prob arg(a15) = 0.9305602832051195 and Time = 0.7876
+Prob arg(a8) = 0.29586202195105327 and Time = 0.7841
+Prob arg(a16) = 0.5813615608136156 and Time = 0.7825
+Average_Time = 0.7841400000000001Average Iterations = 14619.55
+nb_nodes = 20 nb edges = 38
+Min_Time = 0.7817602157592773 Max Time = 0.7908289432525635
+ 
+Prob arg(a0) = 1.0 and Time = 0.7825
+Prob arg(a2) = 0.019445593711212246 and Time = 0.7848
+Prob arg(a10) = 0.0020464963981663394 and Time = 0.7831
+Prob arg(a1) = 1.0 and Time = 0.7825
+Prob arg(a3) = 0.29293096320793716 and Time = 0.782
+Prob arg(a8) = 0.14917078334509526 and Time = 0.7832
+Prob arg(a7) = 0.9958015594207865 and Time = 0.7886
+Prob arg(a11) = 0.022723583833793217 and Time = 0.7847
+Prob arg(a15) = 0.026753960556094407 and Time = 0.7822
+Prob arg(a18) = 0.8056656755863891 and Time = 0.783
+Prob arg(a19) = 0.2652509019350607 and Time = 0.7838
+Prob arg(a6) = 0.7855012427506214 and Time = 0.7825
+Prob arg(a13) = 0.12149144660355422 and Time = 0.7803
+Prob arg(a16) = 0.15730914070523794 and Time = 0.7864
+Prob arg(a4) = 1.0 and Time = 0.7835
+Prob arg(a5) = 1.0 and Time = 0.7836
+Prob arg(a17) = 0.10865607414763323 and Time = 0.7823
+Prob arg(a9) = 0.3290967226219025 and Time = 0.7837
+Prob arg(a14) = 0.080934764955337 and Time = 0.7824
+Prob arg(a12) = 0.9834971593471007 and Time = 0.7824
+Average_Time = 0.783375Average Iterations = 11952.65
+nb_nodes = 20 nb edges = 49
+Min_Time = 0.7803144454956055 Max Time = 0.788571834564209
+ 
+Prob arg(a0) = 1.0 and Time = 0.7818
+Prob arg(a6) = 0.22162281998226427 and Time = 0.7839
+Prob arg(a8) = 0.23997039230199851 and Time = 0.7818
+Prob arg(a14) = 0.02677496991576414 and Time = 0.7845
+Prob arg(a1) = 1.0 and Time = 0.7826
+Prob arg(a7) = 0.2587198446485921 and Time = 0.7824
+Prob arg(a9) = 0.022209959994481998 and Time = 0.7833
+Prob arg(a19) = 0.30809806835066866 and Time = 0.7903
+Prob arg(a2) = 1.0 and Time = 0.7816
+Prob arg(a11) = 0.5293215256955582 and Time = 0.7869
+Prob arg(a3) = 1.0 and Time = 0.7827
+Prob arg(a4) = 0.2627118644067797 and Time = 0.7826
+Prob arg(a12) = 0.22953736654804271 and Time = 0.7801
+Prob arg(a16) = 0.7067411545623836 and Time = 0.7816
+Prob arg(a5) = 1.0 and Time = 0.7849
+Prob arg(a10) = 0.8190299836194004 and Time = 0.7849
+Prob arg(a15) = 0.8678756476683938 and Time = 0.7832
+Prob arg(a18) = 0.6040712826653518 and Time = 0.7828
+Prob arg(a13) = 0.6121127382441681 and Time = 0.7825
+Prob arg(a17) = 0.519154265507588 and Time = 0.7835
+Average_Time = 0.7833950000000001Average Iterations = 13709.5
+nb_nodes = 20 nb edges = 38
+Min_Time = 0.7800838947296143 Max Time = 0.7902994155883789
+ 
+Prob arg(a0) = 1.0 and Time = 0.7877
+Prob arg(a5) = 0.2166741304672339 and Time = 0.7846
+Prob arg(a8) = 0.12089488025240212 and Time = 0.783
+Prob arg(a9) = 0.5819378427787935 and Time = 0.7828
+Prob arg(a19) = 0.09469165359531083 and Time = 0.7824
+Prob arg(a1) = 1.0 and Time = 0.7819
+Prob arg(a6) = 0.030872930015810936 and Time = 0.7877
+Prob arg(a12) = 0.10947676545920235 and Time = 0.7829
+Prob arg(a16) = 0.3127580730545262 and Time = 0.7859
+Prob arg(a2) = 1.0 and Time = 0.7848
+Prob arg(a3) = 0.13485477178423236 and Time = 0.784
+Prob arg(a17) = 0.0 and Time = 0.7816
+Prob arg(a18) = 0.1043698085951607 and Time = 0.7863
+Prob arg(a4) = 1.0 and Time = 0.7836
+Prob arg(a10) = 0.0927550946406556 and Time = 0.7824
+Prob arg(a14) = 0.03389152044832877 and Time = 0.7871
+Prob arg(a15) = 0.09747318407602044 and Time = 0.7857
+Prob arg(a7) = 0.8445837687216997 and Time = 0.7875
+Prob arg(a11) = 0.8870338693123503 and Time = 0.7823
+Prob arg(a13) = 1.0 and Time = 0.7841
+Average_Time = 0.7844149999999999Average Iterations = 13060.1
+nb_nodes = 20 nb edges = 38
+Min_Time = 0.7815685272216797 Max Time = 0.7877042293548584
+ 
+Prob arg(a0) = 1.0 and Time = 0.7832
+Prob arg(a3) = 0.5332290852228303 and Time = 0.783
+Prob arg(a1) = 1.0 and Time = 0.7821
+Prob arg(a10) = 0.19536813424979874 and Time = 0.7842
+Prob arg(a2) = 1.0 and Time = 0.7805
+Prob arg(a9) = 0.0629393387138766 and Time = 0.783
+Prob arg(a15) = 0.15758421620249952 and Time = 0.7889
+Prob arg(a16) = 0.002662703572976655 and Time = 0.7849
+Prob arg(a4) = 1.0 and Time = 0.785
+Prob arg(a17) = 0.3707089552238806 and Time = 0.7838
+Prob arg(a5) = 1.0 and Time = 0.7811
+Prob arg(a13) = 0.08410878309419463 and Time = 0.7828
+Prob arg(a19) = 0.009469474179508294 and Time = 0.7891
+Prob arg(a6) = 1.0 and Time = 0.7822
+Prob arg(a7) = 0.09112737251314887 and Time = 0.7822
+Prob arg(a12) = 0.08135659674573613 and Time = 0.7847
+Prob arg(a18) = 0.5877968139464983 and Time = 0.7822
+Prob arg(a8) = 1.0 and Time = 0.788
+Prob arg(a11) = 1.0 and Time = 0.7848
+Prob arg(a14) = 1.0 and Time = 0.7827
+Average_Time = 0.7839200000000001Average Iterations = 16447.05
+nb_nodes = 20 nb edges = 26
+Min_Time = 0.7805080413818359 Max Time = 0.789116382598877
+ 
+Prob arg(a0) = 1.0 and Time = 0.7847
+Prob arg(a4) = 0.582875605815832 and Time = 0.784
+Prob arg(a8) = 0.22525389302640486 and Time = 0.7818
+Prob arg(a11) = 0.06797410510281797 and Time = 0.781
+Prob arg(a1) = 1.0 and Time = 0.7813
+Prob arg(a2) = 0.6594369801663468 and Time = 0.7811
+Prob arg(a13) = 0.4562655492994631 and Time = 0.7839
+Prob arg(a9) = 0.534303125614311 and Time = 0.7884
+Prob arg(a12) = 0.1415248157568643 and Time = 0.7859
+Prob arg(a19) = 0.13276190476190478 and Time = 0.7854
+Prob arg(a3) = 1.0 and Time = 0.7848
+Prob arg(a5) = 0.47197857381988617 and Time = 0.7838
+Prob arg(a6) = 0.7178507766743061 and Time = 0.7816
+Prob arg(a10) = 0.2798526751098475 and Time = 0.7844
+Prob arg(a7) = 0.5568582955118507 and Time = 0.7887
+Prob arg(a16) = 0.11638216223369062 and Time = 0.7841
+Prob arg(a15) = 0.932752014797199 and Time = 0.7834
+Prob arg(a14) = 0.88223975370406 and Time = 0.7879
+Prob arg(a17) = 0.8622409823484267 and Time = 0.7835
+Prob arg(a18) = 0.6724215103267472 and Time = 0.7811
+Average_Time = 0.7840400000000001 Average Iterations = 15344.2
+nb_nodes = 20 nb edges = 35
+Min_Time = 0.7809958457946777 Max Time = 0.788686990737915
+ 
+Prob arg(a0) = 1.0 and Time = 0.7823
+Prob arg(a5) = 0.5847731755424063 and Time = 0.7849
+Prob arg(a10) = 0.29365017530190884 and Time = 0.783
+Prob arg(a1) = 1.0 and Time = 0.7829
+Prob arg(a2) = 0.18374614228060457 and Time = 0.7847
+Prob arg(a8) = 0.4001720497380152 and Time = 0.7847
+Prob arg(a16) = 0.00856910689222132 and Time = 0.7831
+Prob arg(a17) = 0.4956529697080626 and Time = 0.7835
+Prob arg(a18) = 0.4207685664939551 and Time = 0.7814
+Prob arg(a19) = 0.0 and Time = 0.7843
+Prob arg(a3) = 0.9786411716842962 and Time = 0.7829
+Prob arg(a4) = 0.8431355565179731 and Time = 0.7843
+Prob arg(a6) = 0.8912083500602168 and Time = 0.7832
+Prob arg(a7) = 0.9248609261145498 and Time = 0.7822
+Prob arg(a13) = 0.07264957264957266 and Time = 0.783
+Prob arg(a11) = 0.11052631578947368 and Time = 0.785
+Prob arg(a15) = 0.1610613759174127 and Time = 0.7845
+Prob arg(a9) = 0.6772759185583899 and Time = 0.7867
+Prob arg(a14) = 0.6734503650768991 and Time = 0.7842
+Prob arg(a12) = 1.0 and Time = 0.7824
+Average_Time = 0.78366 Average Iterations = 12188.3
+nb_nodes = 20 nb edges = 43
+Min_Time = 0.7813839912414551 Max Time = 0.786729097366333
+ 
+Prob arg(a0) = 1.0 and Time = 0.7831
+Prob arg(a10) = 0.04659717964438995 and Time = 0.785
+Prob arg(a11) = 0.03219380030281297 and Time = 0.7839
+Prob arg(a16) = 0.09698464476091972 and Time = 0.7809
+Prob arg(a18) = 0.26144101346001586 and Time = 0.7834
+Prob arg(a1) = 1.0 and Time = 0.7839
+Prob arg(a2) = 0.8968726731198808 and Time = 0.7827
+Prob arg(a4) = 0.2536776463063639 and Time = 0.781
+Prob arg(a5) = 0.13742437337942956 and Time = 0.7802
+Prob arg(a12) = 0.03026958852278102 and Time = 0.7854
+Prob arg(a14) = 0.22387136672850957 and Time = 0.7811
+Prob arg(a17) = 0.09914671902136978 and Time = 0.7839
+Prob arg(a6) = 0.6528481012658228 and Time = 0.7827
+Prob arg(a3) = 1.0 and Time = 0.7814
+Prob arg(a9) = 0.010075566750629723 and Time = 0.7825
+Prob arg(a13) = 0.20582104531768702 and Time = 0.784
+Prob arg(a8) = 0.7847051856864902 and Time = 0.7828
+Prob arg(a7) = 1.0 and Time = 0.7831
+Prob arg(a19) = 0.2825764089736575 and Time = 0.7822
+Prob arg(a15) = 0.7835153169548074 and Time = 0.7851
+Average_Time = 0.782915 Average Iterations = 12829.5
+nb_nodes = 20 nb edges = 43
+MinTime = 0.7801833152770996 MaxTime = 0.7854351997375488
+ 
+Average Total Time = 0.7837139166666667 Average Total Iterations = 13930.542222222222
+Average Total Nodes = 19.9
+Average Total Edges = 39.0
+Max Total Time for one argument = 0.7908289432525635
