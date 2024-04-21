@@ -101,7 +101,9 @@ def proba_arg(dico_Att,dico_Arg):
 
 #file_AF = "AF_0.txt"
 #file_AF = ".\Old_test\AF5_3.txt"
-file_AF = ".\DAG_50_21\DAG_50_21_3.txt"
+#file_AF = ".\DAG_50_21\DAG_50_21_3.txt"
+#file_AF = "./././verif.txt"
+file_AF = "./../../test1.txt"
 AF = open(file_AF,"r")
 dico_Arg = {}
 dico_Att = {}

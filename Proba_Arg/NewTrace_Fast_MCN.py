@@ -14,8 +14,15 @@ import time
 
 #file_AF = ".\Old_test\AF5_3.txt"
 #file_AF = "./DATA/DAG_50_80/DAG_50_80_10.txt"
-file_AF = "./DATA/DAG_50_100/DAG_50_100_2.txt"
+#file_AF = "./DATA/DAG_50_90/DAG_50_90_10.txt"
+#file_AF = "./DATA/DAG_50_100/DAG_50_100_2.txt"
+
 #file_AF = "./DAG-test.txt"
+file_AF = "./test1.txt"
+#file_AF = "./test2.txt"
+#file_AF = "./test3.txt"
+#file_AF = "./verif.txt"
+
 #file_AF = ".\SCN_500\SCN_500_1.txt"
 #file_AF = ".\Old_test\AF5_33.txt"
 AF = open(file_AF,"r")
@@ -198,6 +205,8 @@ def order_level(start,dico_lvl):
 
 def build_dico_paths(goal, ldico_att_in, dico_att):
     list_paths = get_paths_back(goal, ldico_att_in, dico_att, paths=None, current_path=None)
+    #print(f"list paths: {list_paths}")
+    print(f"nb paths: {len(list_paths)}")
     dico_paths = {}
     for path in list_paths:
         for i in range(0,len(path)):
@@ -207,33 +216,58 @@ def build_dico_paths(goal, ldico_att_in, dico_att):
                 dico_paths[str(path[i])].update(set(path[i:]))
     return dico_paths
 
+# def dependant_arg(goal,dico_att_in,dico_att_out,dico_paths):
+#     dico_dep = {}
+#     all_nodes = set()
+#     for k in range(0,len(dico_att_in[goal])):
+#         all_nodes.update(dico_paths[dico_att_in[goal][k]])
+#     all_nodes.add(goal)
+#     for att in dico_att_in[goal]:
+#         dico_dep[att] = set()
+#         branch = dico_paths[att]
+#         i = 0
+#         all_other_branchs = set()
+#         while i < len(dico_att_in[goal]):
+#             if dico_att_in[goal][i] != att:
+#                 all_other_branchs.update(dico_paths[dico_att_in[goal][i]])
+#             i += 1
+#         inter = branch.intersection(all_other_branchs)
+#         for arg in inter:
+#             if len(dico_att_out[arg]) > 1:
+#                 cpt = 0
+#                 j = 0
+#                 while cpt < 2 and j < len(dico_att_out[arg]):
+#                     if dico_att_out[arg][j] in all_nodes:
+#                         cpt += 1
+#                     j += 1
+#                 if cpt == 2:
+#                         dico_dep[att].add(arg)
+#     return dico_dep 
+
 def dependant_arg(goal,dico_att_in,dico_att_out,dico_paths):
-    dico_dep = {}
-    all_nodes = set()
-    for k in range(0,len(dico_att_in[goal])):
-        all_nodes.update(dico_paths[dico_att_in[goal][k]])
-    all_nodes.add(goal)
-    for att in dico_att_in[goal]:
-        dico_dep[att] = set()
-        branch = dico_paths[att]
-        i = 0
-        all_other_branchs = set()
-        while i < len(dico_att_in[goal]):
-            if dico_att_in[goal][i] != att:
-                all_other_branchs.update(dico_paths[dico_att_in[goal][i]])
-            i += 1
-        inter = branch.intersection(all_other_branchs)
-        for arg in inter:
-            if len(dico_att_out[arg]) > 1:
-                cpt = 0
-                j = 0
-                while cpt < 2 and j < len(dico_att_out[arg]):
-                    if dico_att_out[arg][j] in all_nodes:
-                        cpt += 1
-                    j += 1
-                if cpt == 2:
-                        dico_dep[att].add(arg)
-    return dico_dep 
+    #print(f"ICI : {dico_paths}")
+    back_att = set()
+    for arg,path in dico_paths.items():
+        back_att.update(path)
+    dep = set()
+    #print(f"back att = {back_att}")
+    for a in back_att:
+        cpt = 0
+        for b,path in dico_paths.items():
+            if a in path:
+                cpt += 1
+            if cpt > 1:
+                cpt2 = 0
+                for c in dico_att_out[a]:
+                    #print(f"for {a} we test {c}")
+                    if c in back_att:
+                        cpt2 += 1
+                    if cpt2 > 1:
+                        #print(f"add {a}")
+                        dep.add(a)
+                        break
+                break
+    return dep
 
 ############## Function to understand complexity ############################# 
 
@@ -246,6 +280,26 @@ def symb_arg(goal,dico_paths,dep,d_att_out):
             if arg in dico_paths[a] and a != goal and a not in dep :
                 dico_symb[arg].add(a)
     return dico_symb
+
+def size_symb(arg,symb_arg):
+    cpt = 0
+    for dep,liste in symb_arg.items():
+        if arg in liste:
+            cpt += 1
+    return cpt
+
+def approx_comlexity(goal,set_symb,dico_symb,dep):
+    val = 1
+    for symb in set_symb:
+        #val = val * (size_symb(symb,dico_symb) + 1)
+        val = val * (2)
+    for d in dep:
+        val = val * 2
+    val = val - 1
+    if 2**(len(dep)-1) > 0: 
+        val = val * 2**(len(dep)-1)
+    val += 2**(len(dep))
+    return val
 
 def dep_att(dep,d_att_out):
     set_dep = set()
@@ -265,14 +319,16 @@ def fastMCN(goal,dico_Arg,dico_Att,d_lvl):
     dico_paths = build_dico_paths(goal, ldico_att_in, dico_Att)
     dico_att_out = list_dico_Att_out(dico_Arg, dico_Att)
     d_att_out =  dlist_Att_out_to_Arg(dico_att_out)
-    dico_dep = dependant_arg(goal, dico_att_in,d_att_out, dico_paths)
-    merge_dep = set()
-    for id,setdep in dico_dep.items():
-        merge_dep.update(setdep)
+    # dico_dep = dependant_arg(goal, dico_att_in,d_att_out, dico_paths)
+    # merge_dep = set()
+    # for id,setdep in dico_dep.items():
+    #     merge_dep.update(setdep)
+    
+    merge_dep = dependant_arg(goal, dico_att_in,d_att_out, dico_paths)
 
-    dico_symb = symb_arg(goal,dico_paths,merge_dep,d_att_out)
+    #dico_symb = symb_arg(goal,dico_paths,merge_dep,d_att_out)
     #print(f"dico symb: {dico_symb}")
-    set_dep = dep_att(merge_dep,d_att_out)
+    #set_dep = dep_att(merge_dep,d_att_out)
     #print(f"set dep: {set_dep}")
     
     symbo = False
@@ -292,36 +348,50 @@ def fastMCN(goal,dico_Arg,dico_Att,d_lvl):
         dico_deg[goal] = dico_deg[goal].replace(Pow, lambda a,b: Pow(a,1))
 
     
-    set_symb = set()
-    for arg,symbo in dico_symb.items():
-        set_symb.update(symbo)
-    print(f"nb symb = {len(set_symb)}")
-    moy_symb = 0
-    max_symb = 0
-    it = 0
-    for arg,liste in dico_symb.items():
-        l = len(liste)
-        it += 1
-        if l > max_symb:
-            max_symb = l
-        moy_symb += l
-    moy_symb = moy_symb/it
-    print(f"moy nb arg symb = {moy_symb}")
-    print(f"max nb symb = {max_symb}")
+    # set_symb = set()
+    # for arg,symbo in dico_symb.items():
+    #     set_symb.update(symbo)
+
+    #val = approx_comlexity(goal,set_symb,dico_symb,set_dep)
+    #print(f"approx complexity = {val}")
+
+    #print(f"nb symb = {len(set_symb)}")
+    
+    
+    # moy_symb = 0
+    # max_symb = 0
+    # it = 1
+    # a_in = 1
+    # for arg,liste in dico_symb.items():
+    #     l = len(liste)
+    #     it += 1
+    #     if l > max_symb:
+    #         max_symb = l
+    #     moy_symb += l
+    #     if len(dico_att_in[arg]) > 1:
+    #         a_in = a_in * len(dico_att_in[arg])
+    # moy_symb = moy_symb/it
+    # print(f"moy nb arg symb = {moy_symb}")
+    # print(f"max nb symb = {max_symb}")
+    # print(f"prod att in symb = {a_in}")
 
     print(f"nb dep = {len(merge_dep)}")
-    moy_dep = 0
-    max_dep = 0
-    it = 0
-    for tup in set_dep:
-        nbAtt = tup[1]
-        it += 1
-        if nbAtt > max_dep:
-            max_dep = nbAtt
-        moy_dep += nbAtt
-    moy_dep = moy_dep/it
-    print(f"moy nb att dep = {moy_dep}")
-    print(f"max nb att dep = {max_dep}")
+    print(f"dep = {merge_dep}")
+    # moy_dep = 0
+    # max_dep = 0
+    # it = 1
+    # a_out = 1
+    # for tup in set_dep:
+    #     nbAtt = tup[1]
+    #     it += 1
+    #     if nbAtt > max_dep:
+    #         max_dep = nbAtt
+    #     moy_dep += nbAtt
+    #     a_out = a_out * nbAtt
+    # moy_dep = moy_dep/it
+    # print(f"moy nb att dep = {moy_dep}")
+    # print(f"max nb att dep = {max_dep}")
+    # print(f"prod att out dep = {a_out}")
 
     if len(merge_dep) > 0:
             j = 0
@@ -344,7 +414,7 @@ def fastMCN(goal,dico_Arg,dico_Att,d_lvl):
 
 start = time.time()
 #a45
-p = fastMCN("a49",dico_Arg,dico_Att,dico_lvl)
+p = fastMCN("a",dico_Arg,dico_Att,dico_lvl)
 end = time.time()
 elapsed = end - start
 

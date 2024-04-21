@@ -13,8 +13,11 @@ import time
 #### GESTION DU GRAPHE  - INITIALISATION ####
 
 #file_AF = ".\Old_test\AF5_3.txt"
-file_AF = "./DATA/DAG_50_80/DAG_50_80_10.txt"
+#file_AF = "./DATA/DAG_50_90/DAG_50_90_10.txt"
 #file_AF = "./DAG-test.txt"
+file_AF = "./verif.txt"
+#file_AF = "./test3.txt"
+
 #file_AF = ".\SCN_500\SCN_500_1.txt"
 #file_AF = ".\Old_test\AF5_33.txt"
 AF = open(file_AF,"r")
@@ -293,6 +296,7 @@ def AllfastMCN(goal,dico_Arg,dico_Att,dico_lvl):
 
     while i >= 0: 
         deg, set_dep, liste_lvl_j = fastMCN(liste_lvl[i][0],dico_Arg,dico_Att,dico_lvl,dico_deg_computed)
+        #print(f"dep = {set_dep}")
         dico_deg_computed[liste_lvl[i][0]] = deg
         #print(f"liste de {i}: {liste_lvl[i][0]}")
         #print(f"longeur set_dep = {len(set_dep)}")
@@ -341,7 +345,7 @@ def AllfastMCN(goal,dico_Arg,dico_Att,dico_lvl):
 
 
 start = time.time()
-p = AllfastMCN("a45",dico_Arg,dico_Att,dico_lvl)
+p = AllfastMCN("a",dico_Arg,dico_Att,dico_lvl)
 end = time.time()
 elapsed = end - start
 
