@@ -143,8 +143,9 @@ def level_Arg(start, lvl, ldico_att_in,dico_lvl):
     for att in ldico_att_in[start]:
         if dico_lvl[att] < lvl:
             dico_lvl[att] = lvl
-        level_Arg(att, lvl+1, ldico_att_in,dico_lvl)
+        level_Arg(att, lvl+1, ldico_att_in, dico_lvl)
     return dico_lvl
+
 
 def init_dico_lvl(dico_Arg,dico_lvl):
     for arg in dico_Arg:

@@ -1,0 +1,71 @@
+arg(a).
+arg(b).
+arg(b1).
+arg(c).
+arg(d).
+arg(e).
+arg(f).
+arg(f2).
+arg(g).
+
+arg(h1).
+arg(h2).
+arg(h3).
+arg(h4).
+arg(h5).
+arg(h6).
+arg(h7).
+
+att(g,f2):-0.8.
+att(f2,f):-0.8.
+att(g,b1):-0.8.
+att(f,e):-0.8.
+att(f,d):-0.8.
+att(e,c):-0.8.
+att(d,c):-0.8.
+att(b1,b):-0.7.
+att(c,a):-0.3.
+att(b,a):-0.4.
+
+att(g,h1):-0.6.
+att(g,h2):-0.6.
+att(g,h3):-0.6.
+att(g,h4):-0.6.
+att(g,h5):-0.6.
+att(g,h6):-0.6.
+att(g,h7):-0.6.
+
+#######################
+# test of impact of dependency
+
+att(h1,c):-0.7.
+att(h2,c):-0.7.
+att(h3,c):-0.7.
+att(h4,c):-0.7.
+att(h5,c):-0.7.
+att(h6,c):-0.7.
+att(h7,c):-0.7.
+
+att(h1,b1):-0.6.
+att(h2,b1):-0.6.
+att(h3,b1):-0.6.
+att(h4,b1):-0.6.
+att(h5,b1):-0.6.
+att(h6,b1):-0.6.
+att(h7,b1):-0.6.
+
+########################
+
+# number of nodes = 6
+# number of edges = 7
+
+# h6
+# (f2, a) = 2 sec
+# (c, a) = 2 sec
+# (c, b) = 2.7 sec
+
+# h7
+# (f2, a) = 7 sec
+# (c, a) = 6.4 sec
+# (c, b) = 10 sec
+# (c, b1) = 10.3 sec

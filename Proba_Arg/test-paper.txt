@@ -1,0 +1,14 @@
+arg(a).
+arg(b).
+arg(c).
+arg(d).
+arg(e).
+arg(f).
+
+att(f,e):-0.8.
+att(f,d):-0.7.
+att(d,c):-0.6.
+att(d,b):-0.4.
+att(c,b):-0.3.
+att(c,a):-0.2.
+att(b,a):-0.1.

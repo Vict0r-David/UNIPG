@@ -15,10 +15,16 @@ import time
 #file_AF = ".\Old_test\AF5_3.txt"
 #file_AF = "./DATA/DAG_50_80/DAG_50_80_10.txt"
 #file_AF = "./DATA/DAG_50_90/DAG_50_90_10.txt"
-#file_AF = "./DATA/DAG_50_100/DAG_50_100_2.txt"
+#file_AF = "./DATA/DAG_50_100/DAG_50_100_1.txt"
 
-#file_AF = "./DAG-test.txt"
-file_AF = "./test1.txt"
+file_AF = "./DAG-test.txt"
+#file_AF = "./test-paper.txt"
+#file_AF = "./diamond.txt"
+
+#file_AF = "./DAG-Test-small.txt"      
+#file_AF = "./diamond1.txt"     
+
+#file_AF = "./test1.txt"
 #file_AF = "./test2.txt"
 #file_AF = "./test3.txt"
 #file_AF = "./verif.txt"
@@ -271,6 +277,88 @@ def dependant_arg(goal,dico_att_in,dico_att_out,dico_paths):
 
 ############## Function to understand complexity ############################# 
 
+
+def conjunction_with_larger(goal, dico_att_in, dico_deg, dep):
+    dico_conj = {}
+    moyenne = 0
+    maxi = 0
+    list_arg = [goal]
+    dejavu = [goal]
+
+    while len(list_arg) > 0:
+        symb_att = 0
+        for att in dico_att_in[list_arg[0]]:
+            if att not in dejavu:
+                list_arg.append(att)
+                dejavu.append(att)
+            if isinstance(dico_deg[att], sym.Basic) or att in dep:
+                symb_att += 1
+        if symb_att > 1:
+            dico_conj[list_arg[0]] = symb_att
+            moyenne += symb_att
+            if symb_att > maxi:
+                maxi = symb_att
+        del list_arg[0]
+
+    nb = len(dico_conj)
+    moyenne = moyenne/nb
+
+    print(f"nb conj = {nb}")
+    print(f"max larger = {maxi}")
+    print(f"avg larger = {moyenne}")
+
+    return dico_conj
+
+def nbTermes(liste_lvl, dico_att_in, dico_deg, dep):
+    dico_term = {}
+    i = len(liste_lvl)-1
+
+    while i >= 0: 
+        l_att = dico_att_in[str(liste_lvl[i][0])]
+        dico_term[str(liste_lvl[i][0])] = 1
+        if isinstance(dico_deg[str(liste_lvl[i][0])], sym.Basic):
+            for att in l_att:
+                if isinstance(dico_deg[att], sym.Basic) or (att in dep):
+                    dico_term[str(liste_lvl[i][0])] = dico_term[str(liste_lvl[i][0])] * (dico_term[att]+1)
+        i-=1
+    return dico_term 
+
+
+def nbTermes2(liste_lvl, dico_att_in, dico_deg, dep, taille):
+    dico_term = {}
+    i = len(liste_lvl)-1
+
+    while i >= 0: 
+        l_att = dico_att_in[str(liste_lvl[i][0])]
+        dico_term[str(liste_lvl[i][0])] = 1
+        if isinstance(dico_deg[str(liste_lvl[i][0])], sym.Basic):
+            for att in l_att:
+                if att in dep:
+                    dico_term[str(liste_lvl[i][0])] = dico_term[str(liste_lvl[i][0])] * 2
+                elif isinstance(dico_deg[att], sym.Basic):
+                    dico_term[str(liste_lvl[i][0])] = dico_term[str(liste_lvl[i][0])] * (dico_term[att]+1)
+        i-=1
+    
+
+    if len(dep) > 0:
+        j = 0
+        terms =  dico_term[str(liste_lvl[0][0])]
+        # keep only the dependant argument and thanks to list_lvl they are ordered increasingly
+        while j < len(liste_lvl):
+            if liste_lvl[j][0] not in dep:
+                del liste_lvl[j]
+                j -=1
+            j +=1
+        #print(liste_lvl)
+        minus = 0
+        for arg,lvl in liste_lvl:   
+            terms = terms + taille*2**(len(liste_lvl)-minus) + 2**(len(liste_lvl)-minus-1) * (dico_term[arg]-1)
+
+        print(f"nb terms = {terms}")
+
+    return dico_term 
+
+
 def symb_arg(goal,dico_paths,dep,d_att_out):
     dico_symb = {}
     for arg in dep:
@@ -393,6 +481,14 @@ def fastMCN(goal,dico_Arg,dico_Att,d_lvl):
     # print(f"max nb att dep = {max_dep}")
     # print(f"prod att out dep = {a_out}")
 
+    dico_conj = conjunction_with_larger(goal, dico_att_in, dico_deg, merge_dep)
+    print(f"dico conjonction = {dico_conj}\n")
+
+    #dico_terme = nbTermes(liste_lvl, dico_att_in, dico_deg, merge_dep)
+    #print(f"dico termes = {dico_terme}")
+
+    liste = list(liste_lvl)
+
     if len(merge_dep) > 0:
             j = 0
             # keep only the dependant argument and thanks to list_lvl they are ordered increasingly
@@ -407,6 +503,11 @@ def fastMCN(goal,dico_Arg,dico_Att,d_lvl):
                 dico_deg[goal] = sym.expand(dico_deg[goal])
                 dico_deg[goal] = dico_deg[goal].replace(Pow, lambda a,b: Pow(a,1))
 
+
+    taille = len(str(dico_deg[goal]))
+    dico_terme2 = nbTermes2(liste, dico_att_in, dico_deg, merge_dep, taille)
+    print(f"dico termes  = {dico_terme2}")
+
     return dico_deg[goal]
 
 ############################################################
@@ -420,7 +521,19 @@ elapsed = end - start
 
 print(f"Probability of a (ALL MCN algo) = {p}")
 print(f"Time (ALL MCN algo) = {elapsed}\n")
+
+
+
 """
+x = sym.Symbol('x')
+y = sym.Symbol('y')
+a = 4 + x**2 + y
+b = 4 + 5**2
+
+print(isinstance(a, sym.Basic))
+print(isinstance(b, sym.Basic))
+
+
 
 da = sym.Symbol("da")
 ab = sym.Symbol("ab")
