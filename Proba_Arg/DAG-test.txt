@@ -57,19 +57,19 @@ att(b,a):-0.1.
 #######################
 # test of impact of dependency
 
-att(f1,d1):-0.7.
-att(f2,d1):-0.7.
-att(f3,d1):-0.7.
-att(f4,d1):-0.7.
-att(f5,d1):-0.7.
-att(f6,d1):-0.7.
+att(f1,d):-0.7.
+att(f2,d):-0.7.
+att(f3,d):-0.7.
+att(f4,d):-0.7.
+att(f5,d):-0.7.
+att(f6,d):-0.7.
 
-att(f1,g):-0.6.
-att(f2,g):-0.6.
-att(f3,g):-0.6.
-att(f4,g):-0.6.
-att(f5,g):-0.6.
-att(f6,g):-0.6.
+att(f1,c):-0.6.
+att(f2,c):-0.6.
+att(f3,c):-0.6.
+att(f4,c):-0.6.
+att(f5,c):-0.6.
+att(f6,c):-0.6.
 
 ########################
 

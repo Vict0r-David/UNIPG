@@ -17,7 +17,8 @@ import time
 #file_AF = "./DATA/DAG_50_90/DAG_50_90_10.txt"
 #file_AF = "./DATA/DAG_50_100/DAG_50_100_1.txt"
 
-file_AF = "./DAG-test.txt"
+#file_AF = "./DAG-test.txt"
+file_AF = "./small-test.txt"
 #file_AF = "./test-paper.txt"
 #file_AF = "./diamond.txt"
 
@@ -505,7 +506,7 @@ def fastMCN(goal,dico_Arg,dico_Att,d_lvl):
 
 
     taille = len(str(dico_deg[goal]))
-    dico_terme2 = nbTermes2(liste, dico_att_in, dico_deg, merge_dep, taille)
+    dico_terme2 = nbTermes2(liste, dico_att_in, dico_deg, merge_dep, 1)
     print(f"dico termes  = {dico_terme2}")
 
     return dico_deg[goal]
