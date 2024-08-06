@@ -14,11 +14,13 @@ import time
 
 #file_AF = ".\Old_test\AF5_3.txt"
 #file_AF = "./DATA/DAG_50_80/DAG_50_80_10.txt"
-#file_AF = "./DATA/DAG_50_90/DAG_50_90_10.txt"
+#file_AF = "./DATA/DAG_50_90/DAG_50_90_8.txt"
 #file_AF = "./DATA/DAG_50_100/DAG_50_100_1.txt"
 
 #file_AF = "./DAG-test.txt"
-file_AF = "./small-test.txt"
+#file_AF = "./small-test.txt"
+file_AF = "./delete-test.txt"
+
 #file_AF = "./test-paper.txt"
 #file_AF = "./diamond.txt"
 
@@ -325,10 +327,12 @@ def nbTermes(liste_lvl, dico_att_in, dico_deg, dep):
     return dico_term 
 
 
-def nbTermes2(liste_lvl, dico_att_in, dico_deg, dep, taille):
+def nbTermes2(liste_lvl, dico_att_in, dico_deg, dep):
     dico_term = {}
+    dico_term_symb = {}
     i = len(liste_lvl)-1
 
+    """
     while i >= 0: 
         l_att = dico_att_in[str(liste_lvl[i][0])]
         dico_term[str(liste_lvl[i][0])] = 1
@@ -339,23 +343,113 @@ def nbTermes2(liste_lvl, dico_att_in, dico_deg, dep, taille):
                 elif isinstance(dico_deg[att], sym.Basic):
                     dico_term[str(liste_lvl[i][0])] = dico_term[str(liste_lvl[i][0])] * (dico_term[att]+1)
         i-=1
-    
+    """
+
+    #Termes Symboliques = Prod_VarDist 2 * [0.5 + sommeNBVar 0.5]
+
+    while i >= 0: 
+        l_att = dico_att_in[str(liste_lvl[i][0])]
+        dico_term[str(liste_lvl[i][0])] = 1
+        dico_term_symb[str(liste_lvl[i][0])] = {}
+        if isinstance(dico_deg[str(liste_lvl[i][0])], sym.Basic):
+            for att in l_att:
+                if att in dep:
+                    if str(att) not in dico_term_symb[str(liste_lvl[i][0])].keys():
+                        dico_term_symb[str(liste_lvl[i][0])][str(att)] = 1
+                    else :
+                        dico_term_symb[str(liste_lvl[i][0])][str(att)] += 1
+
+                elif isinstance(dico_deg[att], sym.Basic):
+                    for key,val in dico_term_symb[str(att)].items():
+                        if str(key) in dico_term_symb[str(liste_lvl[i][0])]:
+                            dico_term_symb[str(liste_lvl[i][0])][str(key)] += val
+                        else:
+                            dico_term_symb[str(liste_lvl[i][0])][str(key)] = val
+
+                """
+                elif isinstance(dico_deg[att], sym.Basic):
+                    for elem in dico_deg[att].free_symbols:
+                        if str(elem) not in dico_term_symb[str(liste_lvl[i][0])].keys():
+                            dico_term_symb[str(liste_lvl[i][0])][str(elem)] = 1
+                        else :
+                            dico_term_symb[str(liste_lvl[i][0])][str(elem)] += 1
+
+                """
+
+            for key,val in dico_term_symb[str(liste_lvl[i][0])].items():
+                dico_term[str(liste_lvl[i][0])] = dico_term[str(liste_lvl[i][0])] * 2 * (0.5 + 0.5 * val)
+        #print(f"blabla {str(liste_lvl[i][0])}: {dico_term_symb[str(liste_lvl[i][0])]}")
+        i-=1
+
+    print(f"dico term {dico_term}")
 
     if len(dep) > 0:
         j = 0
+        #list_term = []
+        list_term2 = []
         terms =  dico_term[str(liste_lvl[0][0])]
+        som_terms = terms
+        
+        #list_term.append(terms)
+        list_term2.append(terms)
+
+        a = str(liste_lvl[0][0])
+
+        #print("terms")
+        #print(dico_term)
+        #print("terms symb")
+        #print(dico_term_symb)
+
         # keep only the dependant argument and thanks to list_lvl they are ordered increasingly
         while j < len(liste_lvl):
             if liste_lvl[j][0] not in dep:
                 del liste_lvl[j]
                 j -=1
             j +=1
-        #print(liste_lvl)
-        minus = 0
-        for arg,lvl in liste_lvl:   
-            terms = terms + taille*2**(len(liste_lvl)-minus) + 2**(len(liste_lvl)-minus-1) * (dico_term[arg]-1)
+        #minus = 0
 
-        print(f"nb terms = {terms}")
+        print(f" dts: {dico_term_symb}")
+
+        for arg,lvl in liste_lvl:   
+            #som_terms = som_terms + 2**(len(liste_lvl)-minus) + 2**(len(liste_lvl)-minus-1) * (dico_term[arg]-1)
+            #som_terms = som_terms + 2**(len(liste_lvl)-minus-1) + (dico_term[arg]-1) 
+            
+            #print(arg)
+            #print(dico_term_symb[a])
+
+            for key,val in dico_term_symb[arg].items():
+                if key in dico_term_symb[a]:
+                    dico_term_symb[a][key] += val
+                else:
+                    dico_term_symb[a][key] = val
+
+            del dico_term_symb[a][arg]
+
+            t = 1
+            for key,val in dico_term_symb[a].items():
+                t = t * 2 * (0.5 + 0.5 * val)
+            som_terms = som_terms + t
+
+            #print(som_terms)
+
+            list_term2.append(t)
+            
+
+            #terms = 2**(len(liste_lvl)-minus) + 2**(len(liste_lvl)-minus-1) * (dico_term[arg]-1)
+            #terms = 2**(len(liste_lvl)-minus-1) + (dico_term[arg]-1) 
+            #minus += 1
+            #list_term.append(terms)
+            
+
+
+        #print(f"dico terms = {dico_term}")
+        #print(f"nb terms = {terms}")
+        #print(f"list terms = {list_term}")
+        #print(f"max terms = {max(list_term)}")
+        
+        print(f"list terms 2 = {list_term2}")
+        print(f"max terms = {max(list_term2)}")
+        print(f"sum terms = {som_terms}\n")
 
     return dico_term 
 
@@ -431,10 +525,23 @@ def fastMCN(goal,dico_Arg,dico_Att,d_lvl):
                 else:
                     deg = deg * (1-(dico_deg[dico_Att[att][0]]*- dico_Att[att][2])) 
         dico_deg[str(liste_lvl[i][0])] = deg
+        #dico_deg[str(liste_lvl[i][0])] = sym.expand(deg)
         i-=1
+
+    """    
     if symbo:
+
+        start = time.time()
         dico_deg[goal] = sym.expand(dico_deg[goal])
+        #dico_deg[goal] = sym.expand(dico_deg[goal],deep=False, modulus=None, power_base=False, power_exp=False,
+         #mul=True, log=False, multinomial=False, basic=False)
+        end = time.time()
+        elapsed = end - start
+        print(f"Premier exp : {elapsed}")
+
         dico_deg[goal] = dico_deg[goal].replace(Pow, lambda a,b: Pow(a,1))
+    """
+    
 
     
     # set_symb = set()
@@ -490,6 +597,7 @@ def fastMCN(goal,dico_Arg,dico_Att,d_lvl):
 
     liste = list(liste_lvl)
 
+    ind = 1
     if len(merge_dep) > 0:
             j = 0
             # keep only the dependant argument and thanks to list_lvl they are ordered increasingly
@@ -500,13 +608,23 @@ def fastMCN(goal,dico_Arg,dico_Att,d_lvl):
                 j +=1
             #print(liste_lvl)
             for arg,lvl in liste_lvl:   
-                dico_deg[goal] = dico_deg[goal].subs(arg,dico_deg[arg]) 
+
+
+                #dico_deg[goal] = dico_deg[goal].subs(arg,dico_deg[arg]) 
+
+                start = time.time()
                 dico_deg[goal] = sym.expand(dico_deg[goal])
+                end = time.time()
+                elapsed = end - start
+                print(f"{arg} exp : {elapsed}")
+
                 dico_deg[goal] = dico_deg[goal].replace(Pow, lambda a,b: Pow(a,1))
+                #dico_deg[goal] = dico_deg[goal].replace(lambda a: a.is_Pow and a.base == arg, lambda a: Pow(arg,1))
+
+                dico_deg[goal] = dico_deg[goal].subs(arg,dico_deg[arg]) 
 
 
-    taille = len(str(dico_deg[goal]))
-    dico_terme2 = nbTermes2(liste, dico_att_in, dico_deg, merge_dep, 1)
+    dico_terme2 = nbTermes2(liste, dico_att_in, dico_deg, merge_dep)
     print(f"dico termes  = {dico_terme2}")
 
     return dico_deg[goal]
@@ -528,14 +646,14 @@ print(f"Time (ALL MCN algo) = {elapsed}\n")
 """
 x = sym.Symbol('x')
 y = sym.Symbol('y')
-a = 4 + x**2 + y
-b = 4 + 5**2
+a = 4 + x**2 + y + x
+#b = 4 + 5**2
 
 print(isinstance(a, sym.Basic))
-print(isinstance(b, sym.Basic))
+#print(isinstance(b, sym.Basic))
+print(a.free_symbols)
 
-
-
+Trace_Fast_MCN.py
 da = sym.Symbol("da")
 ab = sym.Symbol("ab")
 d = sym.Symbol("d")

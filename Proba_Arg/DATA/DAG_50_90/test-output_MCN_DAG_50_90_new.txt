@@ -1,0 +1,110 @@
+Prob arg(a0) = 1 and Time = 0.0002 max terms = 0 sum terms = 0
+Prob arg(a9) = 0.08203791804000002 and Time = 0.0026 max terms = 3.0 sum terms = 4.0
+Prob arg(a1) = 1 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a5) = 0.47880000000000006 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a12) = 0.15000000000000002 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a20) = 0.021866267852799985 and Time = 0.0015 max terms = 12.0 sum terms = 25.0
+Prob arg(a32) = 0.64 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a36) = 0.43249573298184 and Time = 0.0011 max terms = 9.0 sum terms = 13.0
+Prob arg(a47) = 0.3388410808000001 and Time = 0.0004 max terms = 3.0 sum terms = 4.0
+Prob arg(a2) = 1 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a4) = 0.44999999999999996 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a8) = 0.76 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a16) = 0.13609854481311812 and Time = 0.0019 max terms = 12.0 sum terms = 17.0
+Prob arg(a29) = 0.046766584420166624 and Time = 0.0032 max terms = 36.0 sum terms = 65.0
+Prob arg(a46) = 0.05622254751022476 and Time = 0.0014 max terms = 12.0 sum terms = 16.0
+Prob arg(a3) = 1 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a11) = 0.21999999999999997 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a14) = 0.2867342472000002 and Time = 0.0005 max terms = 3.0 sum terms = 4.0
+Prob arg(a33) = 0.38545173786504716 and Time = 0.0027 max terms = 24.0 sum terms = 40.0
+Prob arg(a26) = 0.9235 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a35) = 0.802 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a42) = 0.4734060198206571 and Time = 0.0028 max terms = 36.0 sum terms = 61.0
+Prob arg(a45) = 0.5589900257155719 and Time = 0.0267 max terms = 486.0 sum terms = 813.0
+Prob arg(a7) = 0.621748 and Time = 0.0002 max terms = 0 sum terms = 0
+Prob arg(a10) = 0.6025959999999999 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a15) = 0.42647747216792165 and Time = 0.0022 max terms = 16.0 sum terms = 29.0
+Prob arg(a18) = 0.17082774919251656 and Time = 0.0074 max terms = 108.0 sum terms = 199.0
+Prob arg(a31) = 0.7849840592 and Time = 0.0006 max terms = 3.0 sum terms = 4.0
+Prob arg(a6) = 1 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a13) = 0.97949052049 and Time = 0.0007 max terms = 3.0 sum terms = 4.0
+Prob arg(a25) = 1 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a34) = 0.36495928339200007 and Time = 0.0002 max terms = 0 sum terms = 0
+Prob arg(a43) = 0.2034360549111801 and Time = 0.0181 max terms = 324.0 sum terms = 525.0
+Prob arg(a27) = 0.97949052049 and Time = 0.0008 max terms = 3.0 sum terms = 4.0
+Prob arg(a44) = 0.5216463837117108 and Time = 0.0071 max terms = 108.0 sum terms = 179.0
+Prob arg(a30) = 0.3970356076008192 and Time = 0.0037 max terms = 36.0 sum terms = 65.0
+Prob arg(a48) = 0.48689197442861487 and Time = 0.1199 max terms = 1296.0 sum terms = 2370.0
+Prob arg(a21) = 0.78613482526412 and Time = 0.005 max terms = 81.0 sum terms = 138.0
+Prob arg(a22) = 0.934 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a49) = 0.5935590962213244 and Time = 0.0021 max terms = 18.0 sum terms = 34.0
+Prob arg(a23) = 0.8740348821297562 and Time = 0.002 max terms = 18.0 sum terms = 35.0
+Prob arg(a37) = 0.3523656097931984 and Time = 0.002 max terms = 12.0 sum terms = 25.0
+Prob arg(a24) = 0.6066823011313549 and Time = 0.0145 max terms = 324.0 sum terms = 687.0
+Prob arg(a38) = 0.615375124230745 and Time = 0.0045 max terms = 48.0 sum terms = 94.0
+Prob arg(a19) = 0.8775113096681938 and Time = 0.0019 max terms = 12.0 sum terms = 17.0
+Prob arg(a17) = 1 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a39) = 1 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a41) = 1 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a28) = 1 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a40) = 1 and Time = 0.0001 max terms = 0 sum terms = 0
+Average_Time = 0.004797999999999999 nb_nodes = 50 nb_edges = 90
+Min_Time = 0.00011491775512695312 Max_Time = 0.11992478370666504
+ 
+Prob arg(a0) = 1 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a21) = 0.35990000000000005 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a22) = 0.06906186399999992 and Time = 0.0006 max terms = 3.0 sum terms = 4.0
+Prob arg(a41) = 0.0008546146800000008 and Time = 0.0005 max terms = 3.0 sum terms = 4.0
+Prob arg(a1) = 1 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a2) = 0.17000000000000004 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a35) = 0.06808985951160768 and Time = 0.0113 max terms = 216.0 sum terms = 385.0
+Prob arg(a38) = 0.010205637025000009 and Time = 0.0008 max terms = 6.0 sum terms = 10.0
+Prob arg(a14) = 0.03297980223999999 and Time = 0.0002 max terms = 0 sum terms = 0
+Prob arg(a19) = 0.8554999999999999 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a32) = 0.247889509896 and Time = 0.0002 max terms = 0 sum terms = 0
+Prob arg(a36) = 0.7283834939735392 and Time = 0.003 max terms = 36.0 sum terms = 49.0
+Prob arg(a3) = 1 and Time = 0.0002 max terms = 0 sum terms = 0
+Prob arg(a23) = 0.4 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a4) = 1 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a7) = 0.69 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a8) = 0.050000000000000044 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a13) = 0.5122 and Time = 0.0004 max terms = 3.0 sum terms = 4.0
+Prob arg(a45) = 0.36581403312548455 and Time = 0.021 max terms = 384.0 sum terms = 622.0
+Prob arg(a5) = 1 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a17) = 0.10010000000000001 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a25) = 0.13003727229183637 and Time = 0.0024 max terms = 18.0 sum terms = 35.0
+Prob arg(a27) = 0.37443417722984007 and Time = 0.0008 max terms = 4.0 sum terms = 5.0
+Prob arg(a31) = 0.20999999999999996 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a37) = 0.48455866371152934 and Time = 0.0356 max terms = 864.0 sum terms = 1951.0
+Prob arg(a43) = 0.5581268089472001 and Time = 0.0013 max terms = 9.0 sum terms = 13.0
+Prob arg(a6) = 1 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a42) = 0.769526201621408 and Time = 0.0006 max terms = 3.0 sum terms = 4.0
+Prob arg(a44) = 0.03005943204240024 and Time = 0.0022 max terms = 27.0 sum terms = 40.0
+Prob arg(a33) = 0.2078062538115655 and Time = 0.0041 max terms = 54.0 sum terms = 88.0
+Prob arg(a46) = 0.3242363958856021 and Time = 0.0356 max terms = 512.0 sum terms = 838.0
+Prob arg(a20) = 0.9684999999999999 and Time = 0.0002 max terms = 0 sum terms = 0
+Prob arg(a26) = 0.4233116136754923 and Time = 0.0014 max terms = 9.0 sum terms = 14.0
+Prob arg(a9) = 1 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a24) = 0.6546972007368801 and Time = 0.0011 max terms = 9.0 sum terms = 14.0
+Prob arg(a10) = 1 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a11) = 1 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a34) = 0.9349813638540818 and Time = 0.0023 max terms = 18.0 sum terms = 35.0
+Prob arg(a12) = 1 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a15) = 1 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a18) = 0.5082880000000001 and Time = 0.0006 max terms = 3.0 sum terms = 4.0
+Prob arg(a47) = 0.23472181131872766 and Time = 1.053 max terms = 7776.0 sum terms = 30056.0
+Prob arg(a40) = 0.5699077617577573 and Time = 0.1592 max terms = 2592.0 sum terms = 7258.0
+Prob arg(a16) = 1 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a49) = 0.6629233680895275 and Time = 0.0139 max terms = 192.0 sum terms = 439.0
+Prob arg(a39) = 1 and Time = 0.0001 max terms = 0 sum terms = 0
+Prob arg(a29) = 0.8391429521740428 and Time = 0.0017 max terms = 12.0 sum terms = 17.0
+Prob arg(a30) = 0.9516566952000001 and Time = 0.0006 max terms = 3.0 sum terms = 4.0
+Prob arg(a48) = 0.883472129123082 and Time = 3.1911 max terms = 38880.0 sum terms = 138602.0
+Prob arg(a28) = 1 and Time = 0.0002 max terms = 0 sum terms = 0
+Average_Time = 0.09096200000000002 nb_nodes = 50 nb_edges = 90
+Min_Time = 0.0001087188720703125 Max_Time = 3.191133975982666
+ 
+Average Total Time = 0.009576000000000001
+Average Total Nodes = 10.0
+Average Total Edges = 18.0
+Max Total Time for one argument = 3.191133975982666
