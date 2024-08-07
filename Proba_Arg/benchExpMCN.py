@@ -456,7 +456,7 @@ def init_dico_lvl(dico_Arg,dico_lvl):
 
 #### GESTION DU GRAPHE  - INITIALISATION ####
 
-output = "./50_91/test-output_MCN_DAG_50_91.txt"
+output = "./50_70_1500/output_MCN_DAG_50_70_1500_sage.txt"
 #output = ".\SCN_1000\output_M_SCN_1000.txt"
 f_out = open(output,"w")
 avg_total_time = 0
@@ -468,10 +468,13 @@ tab_Max = []
 tab_Sum = []
 tab_Time = []
 
-for i in range(1,201):
-    print("")
+for i in range(1,1501):
+    print("=================================")
+    print("=================================")
     print(i)
-    file_AF = "./50_91/DAG_50_91_"+str(i)+".txt"
+    print("=================================")
+    print("=================================")
+    file_AF = "./50_70_1500/DAG_50_70_"+str(i)+".txt"
     #file_AF = ".\SCN_1000\SCN_1000_"+str(i)+".txt"
     AF = open(file_AF,"r")
     dico_Arg = {}
@@ -588,9 +591,13 @@ f_out.write("\nMax Total Time for one argument = ")
 f_out.write(str(total_max))
 f_out.close()
 
-print(tab_Max)
-print(tab_Sum)
-print(tab_Time)
+#print(tab_Max)
+#print(tab_Sum)
+#print(tab_Time)
+
+pickle.dump(tab_Max, open("save_max_50_70_1500", "wb"))
+pickle.dump(tab_Sum, open("save_sum_50_70_1500", "wb"))
+pickle.dump(tab_Time, open("save_time_50_70_1500", "wb"))
 
 plt.plot(tab_Max,tab_Time,"ob") # ob = type de points "o" ronds, "b" bleus
 plt.ylabel('Times')
@@ -603,7 +610,4 @@ plt.ylabel('Times')
 plt.xlabel('Sum Termes')
 plt.show()
 
-pickle.dump(tab_Max, open("save_max_50_91_sage", "wb"))
-pickle.dump(tab_Sum, open("save_sum_50_91_sage", "wb"))
-pickle.dump(tab_Time, open("save_time_50_91_sage", "wb"))
 

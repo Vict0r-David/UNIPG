@@ -584,6 +584,9 @@ f_out.write("\nMax Total Time for one argument = ")
 f_out.write(str(total_max))
 f_out.close()
 
+pickle.dump(tab_Max, open("save_max_50_90_sympy", "wb"))
+pickle.dump(tab_Sum, open("save_sum_50_90_sympy", "wb"))
+pickle.dump(tab_Time, open("save_time_50_90_sympy", "wb"))
 
 plt.plot(tab_Max,tab_Time,"ob") # ob = type de points "o" ronds, "b" bleus
 plt.ylabel('Times')
@@ -596,6 +599,4 @@ plt.ylabel('Times')
 plt.xlabel('Sum Termes')
 plt.show()
 
-pickle.dump(tab_Max, open("save_max_50_90_sympy", "wb"))
-pickle.dump(tab_Sum, open("save_sum_50_90_sympy", "wb"))
-pickle.dump(tab_Time, open("save_time_50_90_sympy", "wb"))
+

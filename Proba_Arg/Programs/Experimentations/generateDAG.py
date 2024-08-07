@@ -2,9 +2,9 @@ import networkx as nx
 import random
 
 
-for i in range(1,201):
+for i in range(1,1501):
         
-    G=nx.gnp_random_graph(50,0.08,directed=True)
+    G=nx.gnp_random_graph(50,0.1,directed=True)
 
     DAG = nx.DiGraph([(u,v,{'weight':random.uniform(0.1,1)}) for (u,v) in G.edges() if u<v])
 
@@ -14,7 +14,7 @@ for i in range(1,201):
     #print(type(l0))
     j = 0
     l = []
-    while j < 91:
+    while j < 70:
         l.append(l0[j])
         j +=1
     li = list(set(l0) - set(l))
@@ -44,7 +44,7 @@ for i in range(1,201):
     #print(liste_att)
 
 
-    file = "./../../50_91/DAG_50_91_"+str(i)+".txt"
+    file = "./../../50_70_1500/DAG_50_70_"+str(i)+".txt"
 
     fichier = open(file, "w")
 
