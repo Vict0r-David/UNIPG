@@ -391,7 +391,9 @@ def fastMCN(goal,dico_Arg,dico_Att,d_lvl):
                     symbo = True
                 else:
                     deg = deg * (1-(dico_deg[dico_Att[att][0]]*- dico_Att[att][2])) 
+        
         dico_deg[str(liste_lvl[i][0])] = deg
+        
         i-=1
 
     liste = list(liste_lvl)
@@ -456,7 +458,7 @@ def init_dico_lvl(dico_Arg,dico_lvl):
 
 #### GESTION DU GRAPHE  - INITIALISATION ####
 
-output = "./50_70_1500/output_MCN_DAG_50_70_1500_sage.txt"
+output = "./50_75_1000/output_MCN_DAG_50_75_1000.txt"
 #output = ".\SCN_1000\output_M_SCN_1000.txt"
 f_out = open(output,"w")
 avg_total_time = 0
@@ -468,13 +470,21 @@ tab_Max = []
 tab_Sum = []
 tab_Time = []
 
-for i in range(1,1501):
+pickle.dump([],open("i_max_50_75_1000", "wb"))
+pickle.dump([],open("i_sum_50_75_1000", "wb"))
+pickle.dump([],open("i_time_50_75_1000", "wb"))
+
+
+f_out.write("Graph ")
+f_out.write(str(i))
+
+for i in range(1,1001):
     print("=================================")
     print("=================================")
     print(i)
     print("=================================")
     print("=================================")
-    file_AF = "./50_70_1500/DAG_50_70_"+str(i)+".txt"
+    file_AF = "./50_75_1000/DAG_50_75_"+str(i)+".txt"
     #file_AF = ".\SCN_1000\SCN_1000_"+str(i)+".txt"
     AF = open(file_AF,"r")
     dico_Arg = {}
@@ -525,6 +535,18 @@ for i in range(1,1501):
         tab_Max.append(max_list_term)
         tab_Sum.append(som_terms)
         tab_Time.append(round(time_MCN,4))
+
+        i_max = pickle.load(open("i_max_50_75_1000", "rb"))
+        i_max.append(max_list_term)
+        pickle.dump(i_max,open("i_max_50_75_1000", "wb"))
+
+        i_sum = pickle.load(open("i_sum_50_75_1000", "rb"))
+        i_sum.append(som_terms)
+        pickle.dump(i_max,open("i_sum_50_75_1000", "wb"))
+
+        i_time = pickle.load(open("i_time_50_75_1000", "rb"))
+        i_time.append(time_MCN)
+        pickle.dump(i_max,open("i_time_50_75_1000", "wb"))
 
         liste_output.append([proba,round(time_MCN,4),max_list_term, som_terms])
         dico_lvl = init_dico_lvl(dico_Arg,dico_lvl)
@@ -595,9 +617,9 @@ f_out.close()
 #print(tab_Sum)
 #print(tab_Time)
 
-pickle.dump(tab_Max, open("save_max_50_70_1500", "wb"))
-pickle.dump(tab_Sum, open("save_sum_50_70_1500", "wb"))
-pickle.dump(tab_Time, open("save_time_50_70_1500", "wb"))
+pickle.dump(tab_Max, open("max_50_75_1000", "wb"))
+pickle.dump(tab_Sum, open("sum_50_75_1000", "wb"))
+pickle.dump(tab_Time, open("time_50_75_1000", "wb"))
 
 plt.plot(tab_Max,tab_Time,"ob") # ob = type de points "o" ronds, "b" bleus
 plt.ylabel('Times')

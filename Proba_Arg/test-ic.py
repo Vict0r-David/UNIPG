@@ -6,7 +6,14 @@ from sympy import Pow
 from sympy import arg
 import time
 
+import pickle
 
+#from sage.all import *
+#from sage.arith.power import generic_power
+
+import matplotlib.pyplot as plt
+
+"""
 print("coucou")
 
 
@@ -34,3 +41,29 @@ deg = deg.replace(lambda a: a.is_Pow and a.base == x, lambda a: Pow(x,1))
 #deg = deg.replace(Pow, lambda a,b: Pow(a,1))
 
 print(deg)
+"""
+
+som = pickle.load(open("TEST2_max_50_70_1500", "rb"))
+#temps = pickle.load(open("TEST2_max_50_70_1500", "rb"))
+
+print(som)
+#print(temps)
+
+print(len(som))
+#print(len(temps))
+
+for i in range(1,100):
+    som.append(i)
+
+pickle.dump(som,open("TEST2_max_50_70_1500", "wb"))
+#pickle.dump(open("TEST2_max_50_70_1500", "wb"))
+
+som = pickle.load(open("TEST2_max_50_70_1500", "rb"))
+print(som)
+print(len(som))
+
+#plt.plot(som,temps,"ob") # ob = type de points "o" ronds, "b" bleus
+#plt.ylabel('Times')
+#plt.xlabel('Sum Termes')
+#plt.show()
+

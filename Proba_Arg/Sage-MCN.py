@@ -14,8 +14,10 @@ from sage.arith.power import generic_power
 
 #file_AF = ".\Old_test\AF5_3.txt"
 #file_AF = "./DATA/DAG_50_80/DAG_50_80_10.txt"
-file_AF = "./DATA/DAG_50_90/DAG_50_90_8.txt"
+#file_AF = "./DATA/DAG_50_90/DAG_50_90_8.txt"
 #file_AF = "./DATA/DAG_50_100/DAG_50_100_1.txt"
+
+file_AF = "./50_70_1500/DAG_50_70_760.txt"
 
 #file_AF = "./DAG-test.txt"
 #file_AF = "./small-test.txt"
@@ -215,7 +217,7 @@ def order_level(start,dico_lvl):
 def build_dico_paths(goal, ldico_att_in, dico_att):
     list_paths = get_paths_back(goal, ldico_att_in, dico_att, paths=None, current_path=None)
     #print(f"list paths: {list_paths}")
-    #print(f"nb paths: {len(list_paths)}")
+    print(f"nb paths: {len(list_paths)}")
     dico_paths = {}
     for path in list_paths:
         for i in range(0,len(path)):
@@ -249,7 +251,7 @@ def dependant_arg(goal,dico_att_in,dico_att_out,dico_paths):
 
 ############## Function to understand complexity ############################# 
 
-"""
+
 def conjunction_with_larger(goal, dico_att_in, dico_deg, dep):
     dico_conj = {}
     moyenne = 0
@@ -263,7 +265,8 @@ def conjunction_with_larger(goal, dico_att_in, dico_deg, dep):
             if att not in dejavu:
                 list_arg.append(att)
                 dejavu.append(att)
-            if isinstance(dico_deg[att], sym.Basic) or att in dep:
+            #if isinstance(dico_deg[att], sym.Basic)
+            if type(dico_deg[att]) == sage.symbolic.expression.Expression or att in dep:
                 symb_att += 1
         if symb_att > 1:
             dico_conj[list_arg[0]] = symb_att
@@ -280,12 +283,16 @@ def conjunction_with_larger(goal, dico_att_in, dico_deg, dep):
     print(f"avg larger = {moyenne}")
 
     return dico_conj
-"""
+
 
 def nbTermes(liste_lvl, dico_att_in, dico_deg, dep):
     dico_term = {}
     dico_term_symb = {}
     i = len(liste_lvl)-1
+    list_term = []
+    som_terms = 0
+
+    print(f"dep {dico_deg} and len {len(dico_deg)} ")
 
     #Termes Symboliques = Prod_VarDist 2 * [0.5 + sommeNBVar 0.5]
 
@@ -316,7 +323,7 @@ def nbTermes(liste_lvl, dico_att_in, dico_deg, dep):
 
     if len(dep) > 0:
         j = 0
-        list_term = []
+        
         terms =  dico_term[str(liste_lvl[0][0])]
         som_terms = terms
         list_term.append(terms)
@@ -344,6 +351,7 @@ def nbTermes(liste_lvl, dico_att_in, dico_deg, dep):
             t = 1
             for key,val in dico_term_symb[a].items():
                 t = t * 2 * (0.5 + 0.5 * val)
+                #t = t * 2 
             som_terms = som_terms + t
 
             list_term.append(t)
@@ -351,6 +359,10 @@ def nbTermes(liste_lvl, dico_att_in, dico_deg, dep):
         print(f"list terms = {list_term}")
         print(f"max terms = {max(list_term)}")
         print(f"sum terms = {som_terms}\n")
+        print(f"dico terms symb = {dico_term_symb}\n")
+
+    if len(list_term) == 0:
+        list_term.append(0)
 
     return dico_term,list_term,max(list_term),som_terms
 
@@ -381,10 +393,17 @@ def fastMCN(goal,dico_Arg,dico_Att,d_lvl):
                 else:
                     deg = deg * (1-(dico_deg[dico_Att[att][0]]*- dico_Att[att][2])) 
         dico_deg[str(liste_lvl[i][0])] = deg
+        
+        #if type(deg) == sage.symbolic.expression.Expression:
+        #    dico_deg[str(liste_lvl[i][0])] = deg.expand()
+        #else:
+        #    dico_deg[str(liste_lvl[i][0])] = deg
+
         i-=1
 
+    liste = list(liste_lvl)
     if len(merge_dep) > 0:
-            liste = list(liste_lvl)
+            
             j = 0
             # keep only the dependant argument and thanks to list_lvl they are ordered increasingly
             while j < len(liste_lvl):
@@ -395,12 +414,32 @@ def fastMCN(goal,dico_Arg,dico_Att,d_lvl):
 
             for arg,lvl in liste_lvl:   
 
+                string = str(dico_deg[goal])
+                c1 = 0
+                for elem2 in string:
+                    if elem2 == "+" or elem2 == "-":
+                        c1 += 1
+                print(f"nb term avant à {arg} = {c1} ")
+
+                #print(f"avant expr = {dico_deg[goal] }")
+
                 #Expand
                 start = time.time()
                 dico_deg[goal] = dico_deg[goal].expand()
                 end = time.time()
                 elapsed = end - start
+
+                #print(f"après expr = {dico_deg[goal] }")
+
                 print(f"{arg} exp : {elapsed}")
+
+                string = str(dico_deg[goal])
+                c2 = 0
+                for elem2 in string:
+                    if elem2 == "+" or elem2 == "-":
+                        c2 += 1
+                print(f"nb term après à {arg} = {c2} ")
+                print(f"diff = {c2-c1} ")
 
                 #Delete
                 for argu,lvl in liste_lvl:
@@ -413,13 +452,20 @@ def fastMCN(goal,dico_Arg,dico_Att,d_lvl):
 
     dico_term, list_term, max_list_term, som_terms = nbTermes(liste, dico_att_in, dico_deg, merge_dep)
 
+    print(f"dico term {dico_term}")
+    print(f"list term {list_term}")
+    print(f"max_list_term {max_list_term}")
+    print(f"som_terms {som_terms}")
+
+    conjunction_with_larger(goal, dico_att_in, dico_deg, merge_dep)
+
     return dico_deg[goal]
 
 ############################################################
 
 
 start = time.time()
-p = fastMCN("a43",dico_Arg,dico_Att,dico_lvl)
+p = fastMCN("a49",dico_Arg,dico_Att,dico_lvl)
 end = time.time()
 elapsed = end - start
 

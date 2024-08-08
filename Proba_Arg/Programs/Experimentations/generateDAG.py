@@ -2,7 +2,7 @@ import networkx as nx
 import random
 
 
-for i in range(1,1501):
+for i in range(1,1001):
         
     G=nx.gnp_random_graph(50,0.1,directed=True)
 
@@ -14,7 +14,7 @@ for i in range(1,1501):
     #print(type(l0))
     j = 0
     l = []
-    while j < 70:
+    while j < 75:
         l.append(l0[j])
         j +=1
     li = list(set(l0) - set(l))
@@ -44,7 +44,7 @@ for i in range(1,1501):
     #print(liste_att)
 
 
-    file = "./../../50_70_1500/DAG_50_70_"+str(i)+".txt"
+    file = "./../../50_75_1000/DAG_50_75_"+str(i)+".txt"
 
     fichier = open(file, "w")
 
