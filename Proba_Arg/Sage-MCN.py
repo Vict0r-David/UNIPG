@@ -9,6 +9,8 @@ import time
 from sage.all import *
 from sage.arith.power import generic_power
 
+#import benchExpMCN
+
 
 #### GESTION DU GRAPHE  - INITIALISATION ####
 
@@ -17,11 +19,13 @@ from sage.arith.power import generic_power
 #file_AF = "./DATA/DAG_50_90/DAG_50_90_8.txt"
 #file_AF = "./DATA/DAG_50_100/DAG_50_100_1.txt"
 
-file_AF = "./50_70_1500/DAG_50_70_760.txt"
+#file_AF = "./50_70_1500/DAG_50_70_760.txt"
 
 #file_AF = "./DAG-test.txt"
 #file_AF = "./small-test.txt"
 #file_AF = "./delete-test.txt"
+#file_AF = "./dep-test.txt"
+#file_AF = "./50_75_1000/DAG_50_75_2.txt"
 
 #file_AF = "./test-paper.txt"
 #file_AF = "./diamond.txt"
@@ -29,7 +33,7 @@ file_AF = "./50_70_1500/DAG_50_70_760.txt"
 #file_AF = "./DAG-Test-small.txt"      
 #file_AF = "./diamond1.txt"     
 
-#file_AF = "./test1.txt"
+file_AF = "./test1.txt"
 #file_AF = "./test2.txt"
 #file_AF = "./test3.txt"
 #file_AF = "./verif.txt"
@@ -140,6 +144,28 @@ def get_paths_back(node, ldico_att_in, dico_att, paths=None, current_path=None):
     return paths
 
 
+
+def get_paths_back2(node, ldico_att_in, dico_att, paths=None, current_path=None, back_arg=None):
+    if paths is None:
+        paths = []
+    if current_path is None:
+        current_path = []
+    if back_arg is None:
+        back_arg = set()
+    else:
+        back_arg.add(node)
+
+    current_path.append(node)
+    if ldico_att_in[node] == []: 
+        paths.append(current_path)
+    else:
+        children = []
+        for att in ldico_att_in[node]:
+            children.append(dico_att[att][0])
+        for child in children:
+            get_paths_back2(child, ldico_att_in, dico_att, paths, list(current_path),back_arg)
+    return paths,back_arg
+
 ################################################################################################################
 ################################################################################################################
 
@@ -246,6 +272,33 @@ def dependant_arg(goal,dico_att_in,dico_att_out,dico_paths):
                     if cpt2 > 1:
                         dep.add(a)
                         break
+                break
+    return dep
+
+
+def build_dico_paths2(goal, ldico_att_in, dico_att):
+    list_paths,back_att = get_paths_back2(goal, ldico_att_in, dico_att, paths=None, current_path=None,back_arg=None)
+    #print(f"list paths: {list_paths}")
+    #print(f"nb paths: {len(list_paths)}")
+    back_att.add(goal)
+    dico_paths = {}
+    for path in list_paths:
+        for i in range(0,len(path)):
+            if str(path[i]) not in dico_paths:
+                dico_paths[path[i]] = set(path[i:])
+            else:
+                dico_paths[str(path[i])].update(set(path[i:]))
+    return dico_paths,back_att
+
+def dependant_arg2(dico_att_out,back_att):
+    dep = set()
+    for a in back_att:
+        cpt = 0
+        for att in dico_att_out[a]:
+            if att in back_att:
+                cpt +=1
+            if cpt > 1:
+                dep.add(a)
                 break
     return dep
 
@@ -375,11 +428,20 @@ def fastMCN(goal,dico_Arg,dico_Att,d_lvl):
     liste_lvl = order_level(goal,dico_lvl)
     dico_deg = {}
     i = len(liste_lvl)-1
-    dico_paths = build_dico_paths(goal, ldico_att_in, dico_Att)
+    #dico_paths = build_dico_paths(goal, ldico_att_in, dico_Att)
+
+    #####
+    dico_paths2, back_att = build_dico_paths2(goal, ldico_att_in, dico_Att)
+
     dico_att_out = list_dico_Att_out(dico_Arg, dico_Att)
     d_att_out =  dlist_Att_out_to_Arg(dico_att_out)
     
-    merge_dep = dependant_arg(goal, dico_att_in,d_att_out, dico_paths)
+    #merge_dep = dependant_arg(goal, dico_att_in,d_att_out, dico_paths)
+
+    merge_dep = dependant_arg2(d_att_out, back_att)
+
+    print(f"dep = {merge_dep}")
+    #print(f"dep2 = {merge_dep2}")
     
     symbo = False
     while i >= 0: 
@@ -457,7 +519,7 @@ def fastMCN(goal,dico_Arg,dico_Att,d_lvl):
     print(f"max_list_term {max_list_term}")
     print(f"som_terms {som_terms}")
 
-    conjunction_with_larger(goal, dico_att_in, dico_deg, merge_dep)
+    #conjunction_with_larger(goal, dico_att_in, dico_deg, merge_dep)
 
     return dico_deg[goal]
 
@@ -465,9 +527,30 @@ def fastMCN(goal,dico_Arg,dico_Att,d_lvl):
 
 
 start = time.time()
-p = fastMCN("a49",dico_Arg,dico_Att,dico_lvl)
+p = fastMCN("a",dico_Arg,dico_Att,dico_lvl)
 end = time.time()
 elapsed = end - start
 
 print(f"Probability of a (ALL MCN algo) = {p}")
 print(f"Time (ALL MCN algo) = {elapsed}\n")
+
+
+"""
+
+f = var('f')
+e = var('e')
+d = var('d')
+c = var('c')
+
+a = (1 - 0.2*c)*(1 - 0.1*(1 - 0.4*d)*(1 - 0.3*c))
+
+a = a.expand()
+
+print(f"first expand = {a}")
+
+a2 = 0.9 - 0.156*(1 - 0.5*(0.2))*(1 - 0.6*d) + 0.04*d - 0.0176*(1 - 0.5*(0.2))*(1 - 0.6*d)*d
+
+a2 = a2.expand()
+
+print(f"second expand = {a2}")
+"""

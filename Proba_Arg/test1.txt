@@ -2,15 +2,16 @@ arg(a).
 arg(b).
 arg(c).
 arg(d).
-arg(d1).
 arg(e).
 arg(f).
+arg(g).
 
+att(f,g):-0.9.
 att(f,e):-0.8.
-att(e,d):-0.8.
-att(e,b):-0.8.
-att(e,c):-0.8.
-att(d,b):-0.8.
-att(d1,c):-0.8.
-att(c,a):-0.8.
-att(b,a):-0.8.
+att(f,d):-0.7.
+att(e,c):-0.5.
+att(d,c):-0.6.
+att(d,b):-0.4.
+att(c,b):-0.3.
+att(c,a):-0.2.
+att(b,a):-0.1.

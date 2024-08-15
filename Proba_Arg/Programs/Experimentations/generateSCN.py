@@ -18,11 +18,11 @@ def generateSCN(k):
 #print(generateSCN(20))
 
 
-for i in range(1,11):
+for i in range(1,101):
 
-    liste_arg,liste_att=generateSCN(100)
+    liste_arg,liste_att=generateSCN(2000)
 
-    file = ".\SCN_100\SCN_100_"+str(i)+".txt"
+    file = "../../SCN/SCN_2000/SCN_2000_"+str(i)+".txt"
 
     fichier = open(file, "w")
 

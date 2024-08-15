@@ -59,8 +59,8 @@ def approx(arg,time_max,dico_Att,dico_Arg):
         end = time.time()
         sum_time += end - start
         n += 1
-    print(n)
+    #print(n)
     return float(count/n)
 
 
-print(approx("a1",0.071, dico_Att,dico_Arg))
+#print(approx("a1",0.071, dico_Att,dico_Arg))
