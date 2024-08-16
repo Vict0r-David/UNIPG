@@ -36,7 +36,6 @@ file_AF = "./test1.txt"
 
 #file_AF = ".\SCN_500\SCN_500_1.txt"
 #file_AF = ".\Old_test\AF5_33.txt"
-
 AF = open(file_AF,"r")
 dico_Arg = {}
 dico_Att = {}
@@ -123,7 +122,26 @@ def list_dico_Att_out(dico_Arg, dico_Att):
         ldico_att_out[att[0]] += [id]
     return ldico_att_out
 
-def get_paths_back(node, ldico_att_in, dico_att, paths=None, current_path=None, back_arg=None):
+
+def get_paths_back(node, ldico_att_in, dico_att, paths=None, current_path=None):
+    if paths is None:
+        paths = []
+    if current_path is None:
+        current_path = []
+    current_path.append(node)
+    if ldico_att_in[node] == []: 
+        paths.append(current_path)
+    else:
+        children = []
+        for att in ldico_att_in[node]:
+            children.append(dico_att[att][0])
+        for child in children:
+            get_paths_back(child, ldico_att_in, dico_att, paths, list(current_path))
+    return paths
+
+
+
+def get_paths_back2(node, ldico_att_in, dico_att, paths=None, current_path=None, back_arg=None):
     if paths is None:
         paths = []
     if current_path is None:
@@ -141,7 +159,7 @@ def get_paths_back(node, ldico_att_in, dico_att, paths=None, current_path=None, 
         for att in ldico_att_in[node]:
             children.append(dico_att[att][0])
         for child in children:
-            get_paths_back(child, ldico_att_in, dico_att, paths, list(current_path),back_arg)
+            get_paths_back2(child, ldico_att_in, dico_att, paths, list(current_path),back_arg)
     return paths,back_arg
 
 ################################################################################################################
@@ -219,7 +237,43 @@ def order_level(start,dico_lvl):
 ############################################################
 
 def build_dico_paths(goal, ldico_att_in, dico_att):
-    list_paths,back_att = get_paths_back(goal, ldico_att_in, dico_att, paths=None, current_path=None,back_arg=None)
+    list_paths = get_paths_back(goal, ldico_att_in, dico_att, paths=None, current_path=None)
+    #print(f"list paths: {list_paths}")
+    #print(f"nb paths: {len(list_paths)}")
+    dico_paths = {}
+    for path in list_paths:
+        for i in range(0,len(path)):
+            if str(path[i]) not in dico_paths:
+                dico_paths[path[i]] = set(path[i:])
+            else:
+                dico_paths[str(path[i])].update(set(path[i:]))
+    return dico_paths
+
+
+def dependant_arg(goal,dico_att_in,dico_att_out,dico_paths):
+    back_att = set()
+    for arg,path in dico_paths.items():
+        back_att.update(path)
+    dep = set()
+    for a in back_att:
+        cpt = 0
+        for b,path in dico_paths.items():
+            if a in path:
+                cpt += 1
+            if cpt > 1:
+                cpt2 = 0
+                for c in dico_att_out[a]:
+                    if c in back_att:
+                        cpt2 += 1
+                    if cpt2 > 1:
+                        dep.add(a)
+                        break
+                break
+    return dep
+
+
+def build_dico_paths2(goal, ldico_att_in, dico_att):
+    list_paths,back_att = get_paths_back2(goal, ldico_att_in, dico_att, paths=None, current_path=None,back_arg=None)
     #print(f"list paths: {list_paths}")
     #print(f"nb paths: {len(list_paths)}")
     back_att.add(goal)
@@ -232,7 +286,7 @@ def build_dico_paths(goal, ldico_att_in, dico_att):
                 dico_paths[str(path[i])].update(set(path[i:]))
     return dico_paths,back_att
 
-def dependant_arg(dico_att_out,back_att):
+def dependant_arg2(dico_att_out,back_att):
     dep = set()
     for a in back_att:
         cpt = 0
@@ -246,7 +300,7 @@ def dependant_arg(dico_att_out,back_att):
 
 ############## Function to understand complexity ############################# 
 
-"""
+
 def conjunction_with_larger(goal, dico_att_in, dico_deg, dep):
     dico_conj = {}
     moyenne = 0
@@ -360,23 +414,30 @@ def nbTermes(liste_lvl, dico_att_in, dico_deg, dep):
         list_term.append(0)
 
     return dico_term,list_term,max(list_term),som_terms
-"""
 
 ############## ############## ############## ############## ############## 
 
 def fastMCN(goal,dico_Arg,dico_Att,d_lvl):
     ldico_att_in = list_dico_Att_in(dico_Arg, dico_Att)
     dico_att_in = dlist_Att_to_Arg(ldico_att_in)
-    dico_att_out = list_dico_Att_out(dico_Arg, dico_Att)
-    d_att_out =  dlist_Att_out_to_Arg(dico_att_out)
-
     dico_lvl = level_Arg(goal, 1, dico_att_in, d_lvl)
     liste_lvl = order_level(goal,dico_lvl)
     dico_deg = {}
     i = len(liste_lvl)-1
+    #dico_paths = build_dico_paths(goal, ldico_att_in, dico_Att)
 
-    dico_paths, back_att = build_dico_paths(goal, ldico_att_in, dico_Att)
-    merge_dep = dependant_arg(d_att_out, back_att)
+    #####
+    dico_paths2, back_att = build_dico_paths2(goal, ldico_att_in, dico_Att)
+
+    dico_att_out = list_dico_Att_out(dico_Arg, dico_Att)
+    d_att_out =  dlist_Att_out_to_Arg(dico_att_out)
+    
+    #merge_dep = dependant_arg(goal, dico_att_in,d_att_out, dico_paths)
+
+    merge_dep = dependant_arg2(d_att_out, back_att)
+
+    print(f"dep = {merge_dep}")
+    #print(f"dep2 = {merge_dep2}")
     
     symbo = False
     while i >= 0: 
@@ -384,11 +445,17 @@ def fastMCN(goal,dico_Arg,dico_Att,d_lvl):
         deg = 1
         for att in l_att:
                 if dico_Att[att][0] in merge_dep :
+                    #deg = deg * (1-(sym.Symbol(dico_Att[att][0])* -dico_Att[att][2]))
                     deg = deg * (1-(var(dico_Att[att][0])* -dico_Att[att][2]))
                     symbo = True
                 else:
                     deg = deg * (1-(dico_deg[dico_Att[att][0]]*- dico_Att[att][2])) 
         dico_deg[str(liste_lvl[i][0])] = deg
+        
+        #if type(deg) == sage.symbolic.expression.Expression:
+        #    dico_deg[str(liste_lvl[i][0])] = deg.expand()
+        #else:
+        #    dico_deg[str(liste_lvl[i][0])] = deg
 
         i-=1
 
@@ -405,26 +472,48 @@ def fastMCN(goal,dico_Arg,dico_Att,d_lvl):
 
             for arg,lvl in liste_lvl:   
 
+                string = str(dico_deg[goal])
+                c1 = 0
+                for elem2 in string:
+                    if elem2 == "+" or elem2 == "-":
+                        c1 += 1
+                print(f"nb term avant à {arg} = {c1} ")
+
+                #print(f"avant expr = {dico_deg[goal] }")
+
                 #Expand
-                #start = time.time()
+                start = time.time()
                 dico_deg[goal] = dico_deg[goal].expand()
-                #end = time.time()
-                #elapsed = end - start
+                end = time.time()
+                elapsed = end - start
+
+                #print(f"après expr = {dico_deg[goal] }")
+
+                print(f"{arg} exp : {elapsed}")
+
+                string = str(dico_deg[goal])
+                c2 = 0
+                for elem2 in string:
+                    if elem2 == "+" or elem2 == "-":
+                        c2 += 1
+                print(f"nb term après à {arg} = {c2} ")
+                print(f"diff = {c2-c1} ")
 
                 #Delete
                 for argu,lvl in liste_lvl:
+
                     for i in range(2,dico_deg[goal].degree(var(str(argu)))+1):
                         dico_deg[goal] = dico_deg[goal].subs(generic_power(var(str(argu)), i)==var(str(argu)))
 
                 #Replace 
                 dico_deg[goal] = dico_deg[goal].subs(var(str(arg))==dico_deg[arg]) 
 
-    #dico_term, list_term, max_list_term, som_terms = nbTermes(liste, dico_att_in, dico_deg, merge_dep)
+    dico_term, list_term, max_list_term, som_terms = nbTermes(liste, dico_att_in, dico_deg, merge_dep)
 
-    #print(f"dico term {dico_term}")
-    #print(f"list term {list_term}")
-    #print(f"max_list_term {max_list_term}")
-    #print(f"som_terms {som_terms}")
+    print(f"dico term {dico_term}")
+    print(f"list term {list_term}")
+    print(f"max_list_term {max_list_term}")
+    print(f"som_terms {som_terms}")
 
     #conjunction_with_larger(goal, dico_att_in, dico_deg, merge_dep)
 
@@ -440,3 +529,24 @@ elapsed = end - start
 
 print(f"Probability of a (ALL MCN algo) = {p}")
 print(f"Time (ALL MCN algo) = {elapsed}\n")
+
+
+"""
+
+f = var('f')
+e = var('e')
+d = var('d')
+c = var('c')
+
+a = (1 - 0.2*c)*(1 - 0.1*(1 - 0.4*d)*(1 - 0.3*c))
+
+a = a.expand()
+
+print(f"first expand = {a}")
+
+a2 = 0.9 - 0.156*(1 - 0.5*(0.2))*(1 - 0.6*d) + 0.04*d - 0.0176*(1 - 0.5*(0.2))*(1 - 0.6*d)*d
+
+a2 = a2.expand()
+
+print(f"second expand = {a2}")
+"""

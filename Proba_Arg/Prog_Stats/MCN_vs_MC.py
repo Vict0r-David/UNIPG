@@ -1,4 +1,4 @@
-# Victor DAVID
+
 # Created 03/10/2022
 
 #import math
@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 
 import pickle
 
-import Approx as MC
+import MonteCarlo as MC
 
 
 List_diff = pickle.load(open("diff_50_75_1000_rapide", "rb"))

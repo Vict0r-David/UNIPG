@@ -2,7 +2,7 @@ import math
 import pickle
 import numpy
 
-import Approx as MC
+import MonteCarlo as MC
 
 import matplotlib.pyplot as plt
 
