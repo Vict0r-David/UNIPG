@@ -1,4 +1,3 @@
-# Victor DAVID
 # Created 03/10/2022
 
 

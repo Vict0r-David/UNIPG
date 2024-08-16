@@ -1,4 +1,3 @@
-# Victor DAVID
 # Created 03/1.0/2022
 
 import math
